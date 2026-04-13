@@ -29,6 +29,10 @@ input {
   @apply w-full p-2 border border-gray-300 rounded-md bg-gray-100;
 }
 
+input[type="checkbox"] {
+  @apply w-auto;
+}
+
 @layer components { 
   /* FORM*/
   .form-file {
@@ -44,7 +48,7 @@ input {
   }
 
   .botao-login {
-    @apply bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer;
+    @apply mb-4 flex bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer text-center justify-center;
   }
   .botao-login:hover {
     @apply bg-blue-600;
@@ -56,5 +60,9 @@ input {
     @apply bg-blue-800;
   }
 
-
+  /* CADASTRO DE VOLUNTÁRIO */
+  
+  .section-voluntario {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4 mx-4 pb-4;
+  }
 }

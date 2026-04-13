@@ -1,19 +1,24 @@
 import FormInput from "@/components/UI/Form/FormInput";
 import Form from "next/form";
 import CadastraUsusario from "../cadastrar-usuario/page";
+import FormLogo from "@/components/UI/Form/FormLogo";
+import FormBotao from "@/components/UI/Form/FormBotao";
 
 export default function CadastraVoluntario() {
 	return (
 		<>
+			<FormLogo
+				className="absolute w-16 left-10 top-2"
+			/>
 			<h1 className="flex items-center justify-center text-2xl font-bold m-4 w-full">Cadastro de Voluntário</h1>
-			<Form action={""}>
-				<section className="grid grid-cols-1 md:grid-cols-2 gap-4 border-b-2 border-gray-800 mx-4 pb-4">
+			<Form action={"/"}>
+				<section className="section-voluntario border-b-2 border-gray-800">
                     <div className="grid grid-cols-4 gap-4 p-4 h-full">
 						<FormInput
 							className="col-span-4"
 							type="text"
 							label="Endereço"
-							name="endereco"
+							name="endereco"  
 							placeholder="Digite o endereço"
 						/>
 
@@ -52,6 +57,7 @@ export default function CadastraVoluntario() {
 						/>
 					</div>
                     <div className="flex flex-col p-4 justify-between h-full">
+						{/* Criar esse componente como FormSelect */}
                         <div className="flex flex-col gap-1">
                             <label htmlFor="local">Local</label>
                             <select className="w-full p-2 border border-gray-300 rounded-md bg-gray-100" name="local" id="local">
@@ -77,6 +83,50 @@ export default function CadastraVoluntario() {
                         </div>
                     </div>
 				</section>
+				<section className="section-voluntario">
+					<div className="gap-4 p-4 h-full">
+						<div>
+							<h3 className="font-semibold">Nome Completo:</h3>
+							<span>(Fetch "voluntário.nome" no banco de dados)</span>
+						</div>
+						<div>
+							<h3 className="font-semibold">CPF:</h3>
+							<span>(Fetch "voluntário.cpf" no banco de dados)</span>
+						</div>
+						<div>
+							<h3 className="font-semibold">Email:</h3>
+							<span>(Fetch "voluntário.email" no banco de dados)</span>
+						</div>
+						<div>
+							<h3 className="font-semibold">Telefone:</h3>
+							<span>(Fetch "voluntário.telefone" no banco de dados)</span>
+						</div>
+					</div>
+					<div className="gap-4 p-4 h-full">
+						<label className="font-semibold">Função Pretendida</label>
+						<div className="flex gap-2 px-4">
+							<input type="checkbox" name="canto" id="canto"/>
+							<label >Canto</label>
+						</div>
+						<div className="flex gap-2 px-4">
+							<input type="checkbox" name="intercessao" id="intercessao"/>
+							<label >Intercessão</label>
+						</div>
+						<div className="flex gap-2 px-4">
+							<input type="checkbox" name="clown" id="clown"/>
+							<label >Clown</label>
+						</div>
+						<div className="flex gap-2 px-4">
+							<input type="checkbox" name="staff" id="staff"/>
+							<label >Staff</label>
+						</div>
+					</div>
+				</section>
+				<FormBotao
+					name="submit"
+					title="Enviar"
+					css="mx-auto"
+				/>
 			</Form>
 		</>
 	);

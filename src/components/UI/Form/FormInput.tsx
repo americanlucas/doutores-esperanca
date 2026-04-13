@@ -46,7 +46,7 @@ export default function FormInput (props: FormInputProps) {
     
     return(
         <div className={`flex flex-col gap-2 ${props.className ? props.className : ""}`}>
-            <label htmlFor={props.name}>{props.label}</label>
+            <label htmlFor={props.name} className='font-semibold'>{props.label}</label>
             <input 
                 className={`mb-3 ${!isValid ? 'border-red-500 border' : ''}`}
                 type={inputType}

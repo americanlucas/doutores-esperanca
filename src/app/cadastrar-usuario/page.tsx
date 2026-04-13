@@ -48,10 +48,7 @@ export default function CadastraUsuario () {
 						required
 					/>
 				</div>
-				<div className="link-form">
-					<FormLink href="/" title="Página Inicial" />
-                    <FormLink href="/cadastrar-voluntario" title="Deseja ser voluntário?" />
-				</div>
+				<FormLink href="/cadastrar-voluntario" title="Deseja ser voluntário?" />
 				<FormBotao name="submit" title="Enviar" css="mb-4"/>
 			</Form>
         </>

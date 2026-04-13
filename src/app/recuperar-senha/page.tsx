@@ -41,7 +41,6 @@ export default function RecuperaSenha() {
 					/>
 				</div>
 				<div className="link-form">
-					<FormLink href="/" title="Página Inicial" />
                     <FormLink href="/cadastrar-usuario" title="Cadastre-se" />
                     <FormLink href="/cadastrar-voluntario" title="Deseja ser voluntário?" />
 				</div>
