@@ -30,7 +30,7 @@ export default function CadastraUsuario () {
 						type="telefone"
 						placeholder="(00) 99999-9999"
 						required
-						maxLenght={11}
+						maxLenght={18}
 					/>
 					<FormInput
 						label='CPF'

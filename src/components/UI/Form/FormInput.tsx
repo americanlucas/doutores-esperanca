@@ -2,6 +2,7 @@
 
 import { formatters, validadores, InputType, maxLengthByType, placeholderByType } from '@/utils/inputFormatters';
 import { useState } from 'react';
+import { Input } from '../Styled-Components/input';
 
 interface FormInputProps {
     label: string
@@ -42,14 +43,14 @@ export default function FormInput (props: FormInputProps) {
     const maxLength = props.maxLenght || maxLengthByType[type];
     const placeholder = props.placeholder || placeholderByType[type];
     
-    const inputType = type === 'data' || type === 'cep' || type === 'cpf' || type === 'telefone' || type === 'nome' ? 'text' : type;
+    const inputType = type === 'data' || type === 'cep' || type === 'cpf' || type === 'telefone' || type === 'nome' || type === "password" ? 'text' : type;
     
     return(
         <div className={`flex flex-col gap-2 ${props.className ? props.className : ""}`}>
             <label htmlFor={props.name} className='font-semibold'>{props.label}</label>
-            <input 
+            <Input
                 className={`mb-3 ${!isValid ? 'border-red-500 border' : ''}`}
-                type={inputType}
+                label={inputType}
                 name={props.name}
                 id={props.name}
                 placeholder={placeholder}
@@ -57,7 +58,6 @@ export default function FormInput (props: FormInputProps) {
                 maxLength={maxLength}
                 onChange={handleChange}
             />
-            
         </div>
     )
 }

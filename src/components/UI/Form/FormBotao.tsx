@@ -1,3 +1,5 @@
+import { Button } from "../Styled-Components/button"
+
 interface FormBotaoProps {
     name: string
     title: string
@@ -7,11 +9,12 @@ interface FormBotaoProps {
 export default function FormBotao (props: FormBotaoProps) {
     return(
         <>
-            <button
-                className={`botao-login ${props.css}`} 
-                name={props.name}
-                type="submit"
-            >{props.title}</button>
+        <Button
+            className={`botao-login text-md ${props.css}`}
+            name={props.name}
+            type="submit"
+            size="lg"
+        >{props.title}</Button>
         </>
     )
 }

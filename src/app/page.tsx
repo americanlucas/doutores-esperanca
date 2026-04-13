@@ -19,12 +19,12 @@ export default function Home() {
 						maxLenght={11}
 					/>
 					<FormInput
-						type="password"
 						label="Senha"
 						name="password"
+						type="password"
 						placeholder="********"
-						required
 						maxLenght={255}
+						required
 					/>
 				</div>
 				<div className="flex flex-col gap-2">

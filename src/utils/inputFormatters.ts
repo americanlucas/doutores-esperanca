@@ -42,6 +42,11 @@ export const formatters = {
   nome: (value: string): string => {
     return value.replace(/[^a-záàâãéèêíïóôõöúçñA-ZÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ\s]/g, '');
   },
+
+  // Password: sem formatação específica
+  password: (value: string): string => {
+    return value;
+  },
 };
 
 // Validações
@@ -84,6 +89,10 @@ export const validadores = {
   nome: (value: string): boolean => {
     return value.trim().length >= 3;
   },
+
+  password: (value: string): boolean => {
+    return value.length >= 6;
+  },
 };
 
 // Tipos de input suportados
@@ -92,7 +101,7 @@ export type InputType = 'text' | 'cpf' | 'telefone' | 'cep' | 'data' | 'email' |
 export const maxLengthByType: Record<InputType, number> = {
   text: 255,
   cpf: 14, // 123.456.789-00
-  telefone: 15, // (11) 99999-9999
+  telefone: 18, // (11) 99999-9999
   cep: 9, // 12345-678
   data: 10, // 01/01/2026
   email: 255,
