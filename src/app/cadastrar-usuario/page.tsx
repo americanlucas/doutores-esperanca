@@ -1,0 +1,59 @@
+import FormBotao from "@/components/UI/Form/FormBotao";
+import FormInput from "@/components/UI/Form/FormInput";
+import FormLink from "@/components/UI/Form/FormLink";
+import FormLogo from "@/components/UI/Form/FormLogo";
+import Form from "next/form";
+
+export default function CadastraUsuario () {
+    return(
+        <>
+            <Form className="form-file" action={"/"}>
+				<FormLogo />
+				<div className="input-form">
+					<FormInput
+						label='Nome'
+						name="nome"
+						type="text"
+						placeholder="Digite seu nome"
+						required
+					/>
+					<FormInput
+						label='E-Mail'
+						name="email"
+						type="email"
+						placeholder="Digite seu e-mail"
+						required
+					/>
+					<FormInput
+						label='Telefone'
+						name="tel"
+						type="telefone"
+						placeholder="(00) 99999-9999"
+						required
+						maxLenght={11}
+					/>
+					<FormInput
+						label='CPF'
+						name="cpf"
+						type="text"
+						placeholder="000.000.000-00"
+						required
+						maxLenght={11}
+					/>
+					<FormInput
+						label='Senha'
+						name="senha"
+						type="password"
+						placeholder="Nova Senha"
+						required
+					/>
+				</div>
+				<div className="link-form">
+					<FormLink href="/" title="Página Inicial" />
+                    <FormLink href="/cadastrar-voluntario" title="Deseja ser voluntário?" />
+				</div>
+				<FormBotao name="submit" title="Enviar" css="mb-4"/>
+			</Form>
+        </>
+    )
+}
