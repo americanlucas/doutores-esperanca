@@ -88,6 +88,27 @@ label {
   .section-voluntario {
     @apply grid grid-cols-1 md:grid-cols-2 gap-4 mx-4 pb-4;
   }
+
+  .separator-h {
+    @apply flex items-center max-w-[97%] mx-auto mb-4;
+  }
+
+  /* CARD */
+  .card-size {
+    @apply w-[98.5%];
+  }
+
+  .default-card {
+    @apply bg-card/30 flex items-center rounded-xl px-2 py-4 gap-2 border;
+  }
+
+  .muted-card {
+    @apply bg-input/30 flex flex-col items-center justify-center rounded-xl py-4;
+  }
+
+  .message-card {
+    @apply bg-green-200/60 flex flex-col items-start justify-center rounded-xl px-6 py-4 gap-2;
+  }
 }
 
 /* ---break---*/

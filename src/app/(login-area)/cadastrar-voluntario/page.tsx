@@ -13,6 +13,7 @@ import {
 	SelectValue,
 } from "@/components/UI/Styled-Components/select";
 import { Checkbox } from "@/components/UI/Styled-Components/checkbox";
+import { Separator } from "@/components/UI/Styled-Components/separator";
 
 export default function CadastraVoluntario() {
 	return (
@@ -22,7 +23,7 @@ export default function CadastraVoluntario() {
 				Cadastro de Voluntário
 			</h1>
 			<Form action={"/voluntario"}>
-				<section className="section-voluntario border-b-2 border-gray-800">
+				<section className="section-voluntario">
 					<div className="grid grid-cols-4 gap-4 p-4 h-full">
 						<FormInput
 							className="col-span-4"
@@ -30,7 +31,7 @@ export default function CadastraVoluntario() {
 							label="Endereço"
 							name="endereco"
 							placeholder="Digite o endereço"
-							required
+							/* required */
 						/>
 
 						<FormInput
@@ -39,7 +40,7 @@ export default function CadastraVoluntario() {
 							label="Complemento"
 							name="complemento"
 							placeholder="Digite o complemento"
-							required
+							/* required */
 						/>
 						<FormInput
 							className="col-span-2"
@@ -47,7 +48,7 @@ export default function CadastraVoluntario() {
 							label="Número"
 							name="numero"
 							placeholder="Digite o número"
-							required
+							/* required */
 						/>
 						<FormInput
 							className="col-span-2"
@@ -55,14 +56,14 @@ export default function CadastraVoluntario() {
 							label="Bairro"
 							name="bairro"
 							placeholder="Digite o bairro"
-							required
+							/* required */
 						/>
 						<FormInput
 							type="nome"
 							label="Cidade"
 							name="cidade"
 							placeholder="Digite a cidade"
-							required
+							/* required */
 						/>
 						{/* Conectar com a API de CEP para preencher ENDEREÇO */}
 						<FormInput
@@ -70,7 +71,7 @@ export default function CadastraVoluntario() {
 							label="CEP"
 							name="cep"
 							placeholder="Digite o CEP"
-							required
+							/* required */
 						/>
 					</div>
 					<div className="flex flex-col p-4 justify-between h-full">
@@ -112,11 +113,12 @@ export default function CadastraVoluntario() {
 								type="data"
 								name="data"
 								label="Data"
-								required
+								/* required */
 							/>
 						</div>
 					</div>
 				</section>
+				<Separator className="separator-h" />
 				<section className="section-voluntario">
 					<div className="gap-4 p-4 h-full">
 						<div>
