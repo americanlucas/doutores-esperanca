@@ -19,12 +19,12 @@ export default function CadastraVoluntario() {
 	return (
 		<>
 			<FormLogo className="absolute w-16 left-10" />
-			<h1 className="flex items-center justify-center text-2xl font-bold m-4 w-full">
+			<h1 className="h1 flex-r-center m-md w-full">
 				Cadastro de Voluntário
 			</h1>
-			<Form action={"/voluntario"}>
+			<Form action={"/voluntario/inicio"}>
 				<section className="section-voluntario">
-					<div className="grid grid-cols-4 gap-4 p-4 h-full">
+					<div className="grid-4 gap-md p-md h-full">
 						<FormInput
 							className="col-span-4"
 							type="text"
@@ -75,7 +75,6 @@ export default function CadastraVoluntario() {
 						/>
 					</div>
 					<div className="flex flex-col p-4 justify-between h-full">
-						{/* Criar esse componente como FormSelect */}
 						<div className="flex flex-col gap-1">
 							<label htmlFor="local">Local</label>
 							<Select>
@@ -146,7 +145,7 @@ export default function CadastraVoluntario() {
 							</span>
 						</div>
 					</div>
-					<div className="gap-5 p-4 h-full">
+					<div className="gap-4 p-4 h-full">
 						<label className="">
 							Função Pretendida
 						</label>

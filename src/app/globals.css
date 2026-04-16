@@ -48,26 +48,160 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-input {
-  @apply w-full p-2 border border-gray-300 rounded-md bg-gray-100;
-}
-
+/* ELEMENTS */
 label {
-  @apply mb-1 font-semibold;
+  @apply font-semibold
 }
 
 @layer components { 
-  /* FORM*/
+  /* -----------------------------------------------DEFAULT ELEMENTS-----------------------------------------------------------*/
+  /* FLEX */
+  .flex-c {
+    @apply flex flex-col
+  }
+
+  .flex-r {
+    @apply flex flex-row
+  }
+
+  .flex-c-center {
+    @apply flex flex-col items-center justify-center
+  }
+
+  .flex-r-center {
+    @apply flex flex-row items-center justify-center
+  }
+
+  /* GRID */
+  .grid-1 {
+    @apply grid grid-cols-1
+  }
+
+  .grid-2 {
+    @apply grid grid-cols-2
+  }
+
+  .grid-3 {
+    @apply grid grid-cols-3
+  }
+
+  .grid-4 {
+    @apply grid grid-cols-4
+  }
+
+  /* GAP */
+  .gap-md {
+    @apply gap-4
+  }
+  .gap-lg {
+    @apply gap-6
+  }
+  .gap-xl {
+    @apply gap-8
+  }
+
+  /* PADDING */
+  .p-md {
+    @apply p-4
+  }
+  .p-lg {
+    @apply p-6
+  }
+  .p-xl {
+    @apply p-8
+  }
+  .px-md {
+    @apply px-4
+  }
+  .px-lg {
+    @apply px-6
+  }
+  .px-xl {
+    @apply px-8
+  }
+  .py-md {
+    @apply py-4
+  }
+  .py-lg {
+    @apply py-6
+  }
+  .py-xl {
+    @apply py-8
+  }
+
+  /* MARGIN */
+  .m-md {
+    @apply m-4
+  }
+  .m-lg {
+    @apply m-6
+  }
+  .m-xl {
+    @apply m-8
+  }
+  .mx-md {
+    @apply mx-4
+  }
+  .mx-lg {
+    @apply mx-6
+  }
+  .mx-xl {
+    @apply mx-8
+  }
+  .my-md {
+    @apply my-4
+  }
+  .my-lg {
+    @apply my-6
+  }
+  .my-xl {
+    @apply my-8
+  }
+
+  /* TEXT FORMAT */
+  .h1 {
+    @apply text-2xl font-bold;
+  }
+  .h2 {
+    @apply text-xl font-bold;
+  }
+  .h3 {
+    @apply text-lg font-bold;
+  }
+
+  /* -----------------------------------------------------------CARD-----------------------------------------------------------*/
+  
+
+  .default-card {
+    @apply bg-card/30 flex items-center rounded-xl px-2 py-4 gap-2 border;
+  }
+
+  .muted-card {
+    @apply bg-input/30 flex flex-col items-center justify-center rounded-xl py-4;
+  }
+
+  .message-card {
+    @apply bg-green-200/60 flex flex-col items-start justify-center rounded-xl px-6 py-4 gap-2;
+  }
+
+  .message-card-title {
+    @apply text-green-900 font-semibold;
+  }
+
+  .separator-h {
+    @apply flex items-center max-w-[97%] mx-auto mb-4;
+  }
+  /* -----------------------------------------------------------FORM-----------------------------------------------------------*/
   .form-file {
     @apply flex flex-col h-full max-w-md mx-auto gap-5 justify-center
   }
 
   .input-form {
-    @apply flex flex-col min-w-xs
+    @apply flex flex-col gap-4
   }
 
   .link-form {
-    @apply flex flex-col gap-2
+    @apply flex flex-col gap-0.5
   }
 
   .botao-login {
@@ -87,27 +221,6 @@ label {
 
   .section-voluntario {
     @apply grid grid-cols-1 md:grid-cols-2 gap-4 mx-4 pb-4;
-  }
-
-  .separator-h {
-    @apply flex items-center max-w-[97%] mx-auto mb-4;
-  }
-
-  /* CARD */
-  .card-size {
-    @apply w-[98.5%];
-  }
-
-  .default-card {
-    @apply bg-card/30 flex items-center rounded-xl px-2 py-4 gap-2 border;
-  }
-
-  .muted-card {
-    @apply bg-input/30 flex flex-col items-center justify-center rounded-xl py-4;
-  }
-
-  .message-card {
-    @apply bg-green-200/60 flex flex-col items-start justify-center rounded-xl px-6 py-4 gap-2;
   }
 }
 

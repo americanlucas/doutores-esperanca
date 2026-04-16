@@ -7,7 +7,7 @@ import Form from "next/form";
 export default function Home() {
 	return (
 		<>
-			<Form className="form-file" action="/dashboard">
+			<Form className="form-file" action="/volutario/inicio">
 				<FormLogo />
 				<div className="input-form">
 					<FormInput
@@ -27,7 +27,7 @@ export default function Home() {
 						required
 					/>
 				</div>
-				<div className="flex flex-col gap-2">
+				<div className="link-form">
 					<FormLink
 						href="/recuperar-senha"
 						title="Esqueci Minha Senha"

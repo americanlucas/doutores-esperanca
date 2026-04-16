@@ -8,7 +8,7 @@ import { AppSidebar } from "@/components/UI/Sidebar/App-Sidebar";
 import { Separator } from "@/components/UI/Styled-Components/separator";
 
 export const metadata: Metadata = {
-	title: "Doutores de Esperança",
+	title: "Voluntário",
 	description:
 		"Página principal de acesso dos voluntários, onde podem visualizar suas informações e funções pretendidas.",
 };
@@ -22,8 +22,8 @@ export default function VoluntarioLayout({ children }: VoluntarioLayoutProps) {
 		<>
 			<SidebarProvider>
 				<AppSidebar />
-				<main className="ml-4 w-full">
-					<div className="flex items-center py-5">
+				<main className="w-full">
+					<div className="flex-r items-center py-md">
 						<SidebarTrigger className="cursor-pointer" />
 						<Separator className="m-2" orientation="vertical" />
 						<header>Doutores de Esperança</header>

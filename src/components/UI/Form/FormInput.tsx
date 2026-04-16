@@ -12,6 +12,7 @@ interface FormInputProps {
     required?: boolean
     maxLenght?: number
     className?: string
+    defaultValue?: string
     onValidationChange?: (isValid: boolean) => void
 }
 
@@ -46,10 +47,10 @@ export default function FormInput (props: FormInputProps) {
     const inputType = type === 'data' || type === 'cep' || type === 'cpf' || type === 'telefone' || type === 'nome' || type === "password" ? 'text' : type;
     
     return(
-        <div className={`flex flex-col gap-2 ${props.className ? props.className : ""}`}>
-            <label htmlFor={props.name} className='font-semibold'>{props.label}</label>
+        <div className={`flex flex-col ${props.className ? props.className : ""}`}>
+            <label htmlFor={props.name}>{props.label}</label>
             <Input
-                className={`mb-3 ${!isValid ? 'border-red-500 border' : ''}`}
+                className={`${!isValid ? 'border-red-500 border' : ''}`}
                 label={inputType}
                 name={props.name}
                 id={props.name}
@@ -57,6 +58,7 @@ export default function FormInput (props: FormInputProps) {
                 required={props.required}
                 maxLength={maxLength}
                 onChange={handleChange}
+                defaultValue={props.defaultValue}
             />
         </div>
     )
