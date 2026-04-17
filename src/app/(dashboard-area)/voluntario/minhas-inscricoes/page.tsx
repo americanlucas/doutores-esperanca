@@ -9,9 +9,9 @@ import { Music2, Plus } from "lucide-react";
 
 export default function MinhasInscricoes() {
 	return (
-		<section className="flex-c gap-lg my-md">
+		<>
 			{/* TÍTULO E BOTÃO */}
-			<div className="flex-r justify-between px-md">
+			<div className="flex-r justify-between">
 				<h1 className="h1">Minhas Inscrições</h1>
 				<Button variant={"outline"}>
 					<Plus />
@@ -19,7 +19,7 @@ export default function MinhasInscricoes() {
 				</Button>
 			</div>
 			{/* ESTATÍSTICAS */}
-			<div className="grid-4 gap-md px-md">
+			<div className="grid-4 gap-md ">
 				<CardStats as="black" quantidade={2} titulo="Total"></CardStats>
 				<CardStats
 					as="green"
@@ -38,7 +38,7 @@ export default function MinhasInscricoes() {
 				></CardStats>
 			</div>
 			{/* FILTROS */}
-			<div className="flex-r items-center gap-md px-md">
+			<div className="flex-r items-center gap-md ">
 				<CardDescription>Filtrar:</CardDescription>
 				<CardBadge className="text-sm" as="green" titulo="Todas" />
 				<CardBadge
@@ -50,7 +50,7 @@ export default function MinhasInscricoes() {
 				<CardBadge className="text-sm" as="muted" titulo="Realizadas" />
 			</div>
 			{/* CARD GRANDE DE INSCRIÇÕES */}
-			<div className="flex-c px-md">
+			<div className="flex-c ">
 				<Card className="px-md">
 					<div className="flex-r items-center justify-between ">
 						<CardHeaderItemInscricoes
@@ -73,6 +73,6 @@ export default function MinhasInscricoes() {
                     </div>
 				</Card>
 			</div>
-		</section>
+		</>
 	);
 }

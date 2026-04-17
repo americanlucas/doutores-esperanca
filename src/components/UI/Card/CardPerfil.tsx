@@ -7,7 +7,6 @@ import {
 	CardTitle,
 	CardContent,
 } from "../Styled-Components/card";
-import { Progress } from "../Styled-Components/progress";
 import {
 	Sheet,
 	SheetClose,
@@ -17,6 +16,7 @@ import {
 } from "../Styled-Components/sheet";
 import FormInput from "../Form/FormInput";
 import CardBadge from "./Card-Components/CardBadge";
+import CardProgress from "./Card-Components/CardProgress";
 
 export default function CardPerfil() {
 	return (
@@ -106,11 +106,11 @@ export default function CardPerfil() {
 				</section>
 			</CardHeader>
 			<CardContent className="flex-c gap-2">
-				<div className="flex justify-between">
-					<CardDescription>Perfil Completo</CardDescription>
-					<CardDescription>80%</CardDescription>
-				</div>
-				<Progress value={80} />
+				<CardProgress
+					as="gray"
+					label="Perfil Completo"
+					progressValue={80}
+				/>
 			</CardContent>
 		</Card>
 	);

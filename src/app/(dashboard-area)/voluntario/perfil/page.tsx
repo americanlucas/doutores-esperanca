@@ -6,8 +6,8 @@ import CardInscricoes from "@/components/UI/Card/CardInscrições";
 export default function Perfil() {
 	return (
 		<>
-			<h1 className="mx-md mb-4 h1">Meu Perfil</h1>
-            <section className="flex-c gap-md m-md">
+			<h1 className="h1">Meu Perfil</h1>
+            <section className="flex-c gap-md">
                 <CardPerfil/>
                 <div className="grid-2 gap-md">
                     <CardDados/>

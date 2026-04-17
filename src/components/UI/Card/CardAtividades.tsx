@@ -3,11 +3,10 @@ import { Button } from "../Styled-Components/button";
 import {
 	Card,
 	CardHeader,
-	CardDescription,
 	CardTitle,
-	CardContent,
 } from "../Styled-Components/card";
 import CardStats from "./Card-Components/CardStats";
+import CardMessage from "./Card-Components/CardMessage";
 
 export default function CardAtividades() {
 	return (
@@ -24,16 +23,11 @@ export default function CardAtividades() {
 			<CardHeader>
 				<CardTitle>Avisos</CardTitle>
 				<div className="grid-1 gap-md">
-					<div className="message-card">
-						<div className="flex-r items-center gap-md">
-							<MessageSquareWarning className="message-card-title" size={16} />
-							<CardTitle className="message-card-title">Treinamento</CardTitle>
-						</div>
-						<p>
-							Caros voluntários, nosso treinamento ocorrerá amanhã
-							às 9h via Google Meet!
-						</p>
-					</div>
+					<CardMessage
+						icon={MessageSquareWarning}
+						title="Treinamento"
+						message="Caros voluntários, nosso treinamento ocorrerá amanhã às 9h via Google Meet!"
+					/>
 				</div>
 			</CardHeader>
 		</Card>

@@ -28,7 +28,7 @@ export default function VoluntarioLayout({ children }: VoluntarioLayoutProps) {
 						<Separator className="m-2" orientation="vertical" />
 						<header>Doutores de Esperança</header>
 					</div>
-					{children}
+					<div className="flex-c gap-lg my-md px-md">{children}</div>
 				</main>
 			</SidebarProvider>
 		</>

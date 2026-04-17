@@ -166,7 +166,7 @@ label {
     @apply text-xl font-bold;
   }
   .h3 {
-    @apply text-lg font-bold;
+    @apply text-lg font-semibold;
   }
 
   /* -----------------------------------------------------------CARD-----------------------------------------------------------*/
@@ -181,7 +181,7 @@ label {
   }
 
   .message-card {
-    @apply bg-green-200/60 flex flex-col items-start justify-center rounded-xl px-6 py-4 gap-2;
+    @apply bg-green-200/60 flex flex-col items-start justify-center rounded-xl px-6 py-4 gap-2 border border-gray-300;
   }
 
   .message-card-title {

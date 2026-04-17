@@ -3,7 +3,8 @@ import { CardDescription } from "../../Styled-Components/card";
 interface CardStatsProps {
     quantidade: number
     titulo: string
-    as: "black" | "green" | "red" | "blue"
+    as: "black" | "green" | "red" | "yellow"
+    percent?: boolean
 }
 
 export default function CardStats({as: color, ...props}: CardStatsProps) {
@@ -12,12 +13,12 @@ export default function CardStats({as: color, ...props}: CardStatsProps) {
         black: "text-black",
         green: "text-green-500/80",
         red: "text-red-500/80",
-        blue: "text-blue-500/80"
+        yellow: "text-amber-500/80"
     }
 
 	return (
 		<div className="muted-card">
-			<span className={`h1 ${colorClass[color]}`}>{props.quantidade}</span>
+			<span className={`h1 ${colorClass[color]}`}>{props.quantidade}{props.percent && `%`}</span>
 			<CardDescription>{props.titulo}</CardDescription>
 		</div>
 	);

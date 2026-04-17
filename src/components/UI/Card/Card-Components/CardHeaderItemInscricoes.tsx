@@ -7,7 +7,7 @@ interface CardHeaderItemInscricoesProps {
     data?: string
     local?: string
     modalidade?: string
-    turno?: string
+    turno?: "Manhã" | "Tarde"
 }
 
 export default function CardHeaderItemInscricoes(props: CardHeaderItemInscricoesProps) {
