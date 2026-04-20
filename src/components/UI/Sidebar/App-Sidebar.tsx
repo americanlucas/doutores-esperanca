@@ -20,6 +20,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { Separator } from "../Styled-Components/separator";
 import { usePathname } from "next/navigation";
+import { EllipsisVertical, IdCard } from "lucide-react";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from "../Styled-Components/dropdown-menu";
+import { Button } from "../Styled-Components/button";
 
 const data = {
 	navMain: [
@@ -34,10 +43,6 @@ const data = {
 				{
 					title: "Perfil",
 					url: "perfil",
-				},
-				{
-					title: "Cadastro",
-					url: "cadastro",
 				},
 				{
 					title: "Meus Anexos",
@@ -87,7 +92,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				</SidebarMenu>
 			</SidebarHeader>
 			<Separator className="separator-h" />
-			<SidebarContent>
+			<SidebarContent className="flex-c justify-between">
 				<SidebarGroup>
 					<SidebarMenu>
 						{data.navMain.map((item) => (
@@ -126,6 +131,39 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 							</SidebarMenuItem>
 						))}
 					</SidebarMenu>
+				</SidebarGroup>
+				<SidebarGroup>
+					<Separator className="separator-h" />
+
+					<DropdownMenu>
+						<DropdownMenuTrigger>
+							<div className="flex-r items-center justify-around hover:bg-black/5 transition-all ease-in-out duration-200 cursor-pointer  rounded-sm px-1 py-2">
+								<IdCard size={30} />
+								<div className="flex-c items-start">
+									<span>Pedro</span>
+									<span className="text-xs text-muted-foreground">
+										pedro@example.com
+									</span>
+								</div>
+								<EllipsisVertical />
+							</div>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent>
+							<div className="flex-c px-2">
+								<span>Pedro</span>
+								<span className="text-xs text-muted-foreground">
+									pedro@example.com
+								</span>
+								<DropdownMenuSeparator/>
+							</div>
+							<DropdownMenuItem>
+								<Link className="w-full" href={"/voluntario/perfil"}>Perfil</Link>
+							</DropdownMenuItem>
+							<DropdownMenuItem>
+								<Link className="w-full" href={"/"}>Sair</Link>
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
 				</SidebarGroup>
 			</SidebarContent>
 			<SidebarRail />

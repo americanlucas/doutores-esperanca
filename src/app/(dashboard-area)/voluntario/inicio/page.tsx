@@ -39,6 +39,8 @@ export default function Inicio() {
 			</div>
 			<div>
 				<CardMessage
+					bgColor="message"
+					textColor="message"
 					icon={MessageSquareCheck}
 					title="Treinamento"
 					message="Caros voluntários, nosso treinamento ocorrerá amanhã às 9h via Google Meet!"

@@ -24,6 +24,8 @@ export default function CardAtividades() {
 				<CardTitle>Avisos</CardTitle>
 				<div className="grid-1 gap-md">
 					<CardMessage
+						bgColor="message"
+						textColor="message"
 						icon={MessageSquareWarning}
 						title="Treinamento"
 						message="Caros voluntários, nosso treinamento ocorrerá amanhã às 9h via Google Meet!"

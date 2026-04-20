@@ -53,6 +53,10 @@ label {
   @apply font-semibold
 }
 
+input[type="file"] {
+  display: none;
+}
+
 @layer components { 
   /* -----------------------------------------------DEFAULT ELEMENTS-----------------------------------------------------------*/
   /* FLEX */
