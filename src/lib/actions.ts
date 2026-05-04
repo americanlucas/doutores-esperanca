@@ -6,7 +6,6 @@ import { voluntarios } from "@/db/schema";
 import bcrypt from "bcrypt";
 import { redirect } from "next/navigation";
 import { eq } from "drizzle-orm";
-
 enum Genero {
 	masculino = "Masculino",
 	feminino = "Feminino",
@@ -49,43 +48,46 @@ export async function Cadastro(state: FormState, formData: FormData) {
 	redirect("/");
 }
 
-export async function Login (state: FormState, formData: FormData) {
-    const validacao = LoginFormSchema.safeParse({
-        email: formData.get('email') as string,
-        senha: formData.get('senha') as string
-    })
+export async function Login(state: FormState, formData: FormData) {
+	const validacao = LoginFormSchema.safeParse({
+		email: formData.get("email") as string,
+		senha: formData.get("senha") as string,
+	});
 
-    if (!validacao.success) {
-        return {
+	if (!validacao.success) {
+		return {
 			errors: z.flattenError(validacao.error).fieldErrors,
 		};
-    }
+	}
 
-    const {email, senha} = validacao.data
-    
-    // Buscar voluntário por email
-    const usuario = await db.select().from(voluntarios).where(eq(voluntarios.email, email))
-    
-    // Validar se usuário existe
-    if (!usuario || usuario.length === 0) {
-        return {
-            errors: {
-                email: ['Email não encontrado'],
-            }
-        };
-    }
-    
-    // Validar senha
-    const validaSenha = bcrypt.compareSync(senha, usuario[0].senha)
-    
-    if (!validaSenha) {
-        return {
-            errors: {
-                senha: ['Senha incorreta'],
-            }
-        };
-    }
+	const { email, senha } = validacao.data;
 
-    // Login bem-sucedido
-    redirect('/voluntario/inicio')
+	// Buscar voluntário por email
+	const usuario = await db
+		.select()
+		.from(voluntarios)
+		.where(eq(voluntarios.email, email));
+
+	// Validar se usuário existe
+	if (!usuario || usuario.length === 0) {
+		return {
+			errors: {
+				email: ["Email não encontrado"],
+			},
+		};
+	}
+
+	// Validar senha
+	const validaSenha = bcrypt.compareSync(senha, usuario[0].senha);
+
+	if (!validaSenha) {
+		return {
+			errors: {
+				senha: ["Senha incorreta"],
+			},
+		};
+	}
+
+	// Login bem-sucedido
+	redirect("/voluntario/inicio");
 }

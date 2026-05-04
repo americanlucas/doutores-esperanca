@@ -96,7 +96,7 @@ export default async function CadastraVoluntario() {
 						</div>
 						<div className="">
 							<FormInput
-								type="data"
+								type="date"
 								name="data"
 								label="Data"
 								/* required */
@@ -109,23 +109,19 @@ export default async function CadastraVoluntario() {
 					<div className="gap-4 p-4 h-full">
 						<div>
 							<label>Nome Completo: </label>
-							Pedro
+							Pedro Álvares Cabral
 						</div>
 						<div>
 							<label>CPF: </label>
-							000000000
+							000.000.000-00
 						</div>
 						<div>
 							<label>Email:</label>
-							<span>
-								(Fetch "voluntário.email" no banco de dados)
-							</span>
+							pedro@email.com
 						</div>
 						<div>
 							<label>Telefone:</label>
-							<span>
-								(Fetch "voluntário.telefone" no banco de dados)
-							</span>
+							(61) 99999-9999
 						</div>
 					</div>
 					<div className="gap-4 p-4 h-full">
