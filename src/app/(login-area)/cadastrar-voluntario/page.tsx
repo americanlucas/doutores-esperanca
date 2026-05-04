@@ -1,6 +1,5 @@
 import FormInput from "@/components/UI/Form/FormInput";
 import Form from "next/form";
-import CadastraUsusario from "../cadastrar-usuario/page";
 import FormLogo from "@/components/UI/Form/FormLogo";
 import FormBotao from "@/components/UI/Form/FormBotao";
 import {
@@ -15,7 +14,7 @@ import {
 import { Checkbox } from "@/components/UI/Styled-Components/checkbox";
 import { Separator } from "@/components/UI/Styled-Components/separator";
 
-export default function CadastraVoluntario() {
+export default async function CadastraVoluntario() {
 	return (
 		<>
 			<FormLogo className="absolute w-16 left-10" />
@@ -24,53 +23,29 @@ export default function CadastraVoluntario() {
 			</h1>
 			<Form action={"/voluntario/inicio"}>
 				<section className="section-voluntario">
-					<div className="grid-4 gap-md p-md h-full">
+					<div className="flex-c gap-md p-md h-full">
 						<FormInput
-							className="col-span-4"
 							type="text"
 							label="Endereço"
 							name="endereco"
 							placeholder="Digite o endereço"
 							/* required */
 						/>
-
 						<FormInput
-							className="col-span-2"
-							type="text"
-							label="Complemento"
-							name="complemento"
-							placeholder="Digite o complemento"
-							/* required */
-						/>
-						<FormInput
-							className="col-span-2"
-							type="text"
-							label="Número"
-							name="numero"
-							placeholder="Digite o número"
-							/* required */
-						/>
-						<FormInput
-							className="col-span-2"
 							type="text"
 							label="Bairro"
 							name="bairro"
 							placeholder="Digite o bairro"
 							/* required */
 						/>
-						<FormInput
-							type="nome"
-							label="Cidade"
-							name="cidade"
-							placeholder="Digite a cidade"
-							/* required */
-						/>
 						{/* Conectar com a API de CEP para preencher ENDEREÇO */}
 						<FormInput
+							className="w-40"
 							type="cep"
 							label="CEP"
 							name="cep"
 							placeholder="Digite o CEP"
+							maxLength={8}
 							/* required */
 						/>
 					</div>
@@ -84,9 +59,15 @@ export default function CadastraVoluntario() {
 								<SelectContent>
 									<SelectGroup>
 										<SelectLabel>Local</SelectLabel>
-										<SelectItem value="local1">Local 1</SelectItem>
-										<SelectItem value="local2">Local 2</SelectItem>
-										<SelectItem value="local3">Local 3</SelectItem>
+										<SelectItem value="local1">
+											Local 1
+										</SelectItem>
+										<SelectItem value="local2">
+											Local 2
+										</SelectItem>
+										<SelectItem value="local3">
+											Local 3
+										</SelectItem>
 									</SelectGroup>
 								</SelectContent>
 							</Select>
@@ -100,9 +81,15 @@ export default function CadastraVoluntario() {
 								<SelectContent>
 									<SelectGroup>
 										<SelectLabel>Polo</SelectLabel>
-										<SelectItem value="polo1">Polo 1</SelectItem>
-										<SelectItem value="polo2">Polo 2</SelectItem>
-										<SelectItem value="polo3">Polo 3</SelectItem>
+										<SelectItem value="polo1">
+											Polo 1
+										</SelectItem>
+										<SelectItem value="polo2">
+											Polo 2
+										</SelectItem>
+										<SelectItem value="polo3">
+											Polo 3
+										</SelectItem>
 									</SelectGroup>
 								</SelectContent>
 							</Select>
@@ -121,16 +108,12 @@ export default function CadastraVoluntario() {
 				<section className="section-voluntario">
 					<div className="gap-4 p-4 h-full">
 						<div>
-							<label>Nome Completo:</label>
-							<span>
-								(Fetch "voluntário.nome" no banco de dados)
-							</span>
+							<label>Nome Completo: </label>
+							Pedro
 						</div>
 						<div>
-							<label>CPF:</label>
-							<span>
-								(Fetch "voluntário.cpf" no banco de dados)
-							</span>
+							<label>CPF: </label>
+							000000000
 						</div>
 						<div>
 							<label>Email:</label>
@@ -146,35 +129,21 @@ export default function CadastraVoluntario() {
 						</div>
 					</div>
 					<div className="gap-4 p-4 h-full">
-						<label className="">
-							Função Pretendida
-						</label>
+						<label className="">Função Pretendida</label>
 						<div className="flex gap-2 px-4">
-							<Checkbox
-								name="canto"
-								id="canto"
-							/>
+							<Checkbox name="canto" id="canto" />
 							<label htmlFor="canto">Canto</label>
 						</div>
 						<div className="flex gap-2 px-4">
-							<Checkbox
-								name="intercessao"
-								id="intercessao"
-							/>
+							<Checkbox name="intercessao" id="intercessao" />
 							<label htmlFor="intercessao">Intercessão</label>
 						</div>
 						<div className="flex gap-2 px-4">
-							<Checkbox
-								name="clown"
-								id="clown"
-							/>
+							<Checkbox name="clown" id="clown" />
 							<label htmlFor="clown">Clown</label>
 						</div>
 						<div className="flex gap-2 px-4">
-							<Checkbox
-								name="staff"
-								id="staff"
-							/>
+							<Checkbox name="staff" id="staff" />
 							<label htmlFor="staff">Staff</label>
 						</div>
 					</div>

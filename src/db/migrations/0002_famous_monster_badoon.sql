@@ -1,0 +1,1 @@
+ALTER TABLE "voluntarios" ALTER COLUMN "cep" SET DATA TYPE char(8);

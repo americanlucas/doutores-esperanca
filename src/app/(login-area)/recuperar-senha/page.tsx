@@ -16,6 +16,7 @@ export default function RecuperaSenha() {
 						type="email"
 						placeholder="Digite seu e-mail"
 						required
+						pattern="text"
 					/>
 					<FormInput
 						label="CPF"
@@ -23,7 +24,8 @@ export default function RecuperaSenha() {
 						type="text"
 						placeholder="000.000.000-00"
 						required
-						maxLenght={11}
+						maxLength={11}
+						pattern="cpf"
 					/>
 					<FormInput
 						label="Senha"
@@ -31,6 +33,7 @@ export default function RecuperaSenha() {
 						type="password"
 						placeholder="Nova Senha"
 						required
+						pattern="text"
 					/>
 					<FormInput
 						label="Confirma Senha"
@@ -38,6 +41,7 @@ export default function RecuperaSenha() {
 						type="password"
 						placeholder="Confirmar Senha"
 						required
+						pattern="text"
 					/>
 				</div>
 				<div className="link-form">

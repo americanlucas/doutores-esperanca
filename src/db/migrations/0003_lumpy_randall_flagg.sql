@@ -1,0 +1,1 @@
+ALTER TABLE "voluntarios" ALTER COLUMN "telefone" SET DATA TYPE char(11);
