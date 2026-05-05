@@ -2,12 +2,12 @@
 "use server";
 
 import z from "zod";
-import { CadastroFormSchema, LoginFormSchema } from "./validation";
+import { CadastroFormSchema, LoginFormSchema, RecuperarSenhaFormSchema } from "./validation";
 import { db } from "@/db";
 import { voluntarios } from "@/db/schema";
 import bcrypt from "bcrypt";
 import { redirect } from "next/navigation";
-import { signIn } from "@/lib/auth";
+import { signIn, signOut } from "@/lib/auth";
 import { AuthError } from "next-auth";
 import { eq } from "drizzle-orm";
 
@@ -24,6 +24,11 @@ export type LoginState = {
 };
 
 export type CadastroState = {
+	success: boolean;
+	errors: Record<string, string[]>;
+};
+
+export type RecuperarSenhaState = {
 	success: boolean;
 	errors: Record<string, string[]>;
 };
@@ -104,4 +109,54 @@ export async function Login(
 	}
 
 	redirect("/voluntario/inicio");
+}
+
+export async function Logout() {
+	console.log("🔴 LOGOUT CHAMADO");
+	await signOut({ redirectTo: "/" });
+}
+
+export async function RecuperarSenha(
+	_prevState: RecuperarSenhaState,
+	formData: FormData,
+): Promise<RecuperarSenhaState> {
+	const validacao = RecuperarSenhaFormSchema.safeParse({
+		email: formData.get("email") as string,
+		cpf: formData.get("cpf") as string,
+		senha: formData.get("senha") as string,
+		confirmarSenha: formData.get("confirmar-senha") as string,
+	});
+
+	if (!validacao.success) {
+		return {
+			success: false,
+			errors: z.flattenError(validacao.error).fieldErrors,
+		};
+	}
+
+	const { email, cpf, senha } = validacao.data;
+
+	// Verifica se o voluntário existe com o email + CPF informados
+	const voluntario = await db
+		.select()
+		.from(voluntarios)
+		.where(eq(voluntarios.email, email))
+		.limit(1)
+		.then((rows) => rows[0]);
+
+	if (!voluntario || voluntario.cpf !== cpf) {
+		return {
+			success: false,
+			errors: { email: ["Email ou CPF não encontrados."] },
+		};
+	}
+
+	const hashedPassword = await bcrypt.hash(senha, 10);
+
+	await db
+		.update(voluntarios)
+		.set({ senha: hashedPassword })
+		.where(eq(voluntarios.cpf, cpf));
+
+	redirect("/");
 }

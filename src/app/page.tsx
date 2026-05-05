@@ -52,11 +52,8 @@ export default function Home() {
 
 			<div className="link-form">
 				<FormLink href="/recuperar-senha" title="Esqueci Minha Senha" />
-				<FormLink href="/cadastrar-usuario" title="Cadastre-se" />
-				<FormLink
-					href="/cadastrar-voluntario"
-					title="Deseja ser voluntário?"
-				/>
+				<FormLink href="/cadastrar" title="Cadastre-se" />
+				{/* <FormLink href="/cadastrar-voluntario" title="Deseja ser voluntário?"/> */}
 			</div>
 
 			<FormBotao

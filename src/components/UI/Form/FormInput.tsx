@@ -10,6 +10,9 @@ interface FormInputProps {
     maxLength?: number
     className?: string
     defaultValue?: string
+    required?: boolean
+    pattern?: string
+    errors?: string[]
 }
 
 export default function FormInput (props: FormInputProps) {

@@ -8,7 +8,7 @@ interface FormLinkProps {
 export default function FormLink (props: FormLinkProps) {
     return (
         <>
-            <Link className="hover:underline hover:text-blue-500 transition-all duration-300" href={props.href}>{props.title}</Link>
+            <Link className="hover:underline hover:text-blue-500 transition-all duration-300 w-fit" href={props.href}>{props.title}</Link>
         </>
     )
 }
