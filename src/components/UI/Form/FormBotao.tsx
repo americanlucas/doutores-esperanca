@@ -4,6 +4,7 @@ interface FormBotaoProps {
     name: string
     title: string
     css?: string
+    disabled?: boolean
 }
 
 export default function FormBotao (props: FormBotaoProps) {
@@ -14,6 +15,7 @@ export default function FormBotao (props: FormBotaoProps) {
             name={props.name}
             type="submit"
             size="lg"
+            disabled={props.disabled}
         >{props.title}</Button>
         </>
     )

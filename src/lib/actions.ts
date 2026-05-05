@@ -1,18 +1,38 @@
+// lib/actions.ts
 "use server";
+
 import z from "zod";
-import { CadastroFormSchema, FormState, LoginFormSchema } from "./validation";
+import { CadastroFormSchema, LoginFormSchema } from "./validation";
 import { db } from "@/db";
 import { voluntarios } from "@/db/schema";
 import bcrypt from "bcrypt";
 import { redirect } from "next/navigation";
+import { signIn } from "@/lib/auth";
+import { AuthError } from "next-auth";
 import { eq } from "drizzle-orm";
+
 enum Genero {
 	masculino = "Masculino",
 	feminino = "Feminino",
 	outro = "Outro",
 }
 
-export async function Cadastro(state: FormState, formData: FormData) {
+// Estado tipado para useActionState
+export type LoginState = {
+	success: boolean;
+	errors: Record<string, string[]>;
+};
+
+export type CadastroState = {
+	success: boolean;
+	errors: Record<string, string[]>;
+};
+
+// Assinatura corrigida para useActionState
+export async function Cadastro(
+	_prevState: CadastroState,
+	formData: FormData,
+): Promise<CadastroState> {
 	const validacao = CadastroFormSchema.safeParse({
 		nome: formData.get("nome") as string,
 		genero: formData.get("genero") as string,
@@ -24,12 +44,13 @@ export async function Cadastro(state: FormState, formData: FormData) {
 
 	if (!validacao.success) {
 		return {
+			success: false,
 			errors: z.flattenError(validacao.error).fieldErrors,
 		};
 	}
 
 	const validado = validacao.data;
-	const hashedPassword = bcrypt.hashSync(validado.senha, 10);
+	const hashedPassword = await bcrypt.hash(validado.senha, 10); // await correto
 
 	await db.insert(voluntarios).values({
 		nome: validado.nome,
@@ -48,46 +69,39 @@ export async function Cadastro(state: FormState, formData: FormData) {
 	redirect("/");
 }
 
-export async function Login(state: FormState, formData: FormData) {
-	const validacao = LoginFormSchema.safeParse({
-		email: formData.get("email") as string,
-		senha: formData.get("senha") as string,
-	});
+// useActionState requer assinatura: (prevState, formData)
+export async function Login(
+	_prevState: LoginState,
+	formData: FormData,
+): Promise<LoginState> {
+	const email = formData.get("email") as string;
+	const senha = formData.get("senha") as string; // ← confirma que o input tem name="senha"
+
+	// Validação local antes de chamar o NextAuth
+	const validacao = LoginFormSchema.safeParse({ email, senha });
 
 	if (!validacao.success) {
 		return {
+			success: false,
 			errors: z.flattenError(validacao.error).fieldErrors,
 		};
 	}
 
-	const { email, senha } = validacao.data;
-
-	// Buscar voluntário por email
-	const usuario = await db
-		.select()
-		.from(voluntarios)
-		.where(eq(voluntarios.email, email));
-
-	// Validar se usuário existe
-	if (!usuario || usuario.length === 0) {
-		return {
-			errors: {
-				email: ["Email não encontrado"],
-			},
-		};
+	try {
+		await signIn("credentials", {
+			email,
+			senha, // ← chave "senha" deve bater com credentials do provider
+			redirect: false,
+		});
+	} catch (error) {
+		if (error instanceof AuthError) {
+			return {
+				success: false,
+				errors: { email: ["Email ou senha inválidos."] },
+			};
+		}
+		throw error;
 	}
 
-	// Validar senha
-	const validaSenha = bcrypt.compareSync(senha, usuario[0].senha);
-
-	if (!validaSenha) {
-		return {
-			errors: {
-				senha: ["Senha incorreta"],
-			},
-		};
-	}
-
-	// Login bem-sucedido
 	redirect("/voluntario/inicio");
 }
