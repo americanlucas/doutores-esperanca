@@ -3,8 +3,8 @@
 
 import z from "zod";
 import { CadastroFormSchema, LoginFormSchema, RecuperarSenhaFormSchema } from "./validation";
-import { db } from "@/db";
-import { voluntarios } from "@/db/schema";
+import { db } from "../db";
+import { voluntarios } from "../db/schema";
 import bcrypt from "bcrypt";
 import { redirect } from "next/navigation";
 import { signIn, signOut } from "@/lib/auth";
