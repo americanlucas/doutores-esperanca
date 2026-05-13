@@ -1,1 +1,0 @@
-ALTER TABLE "voluntarios" ALTER COLUMN "cpf" SET DATA TYPE char(11);
