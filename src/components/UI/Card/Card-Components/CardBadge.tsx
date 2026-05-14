@@ -1,7 +1,8 @@
+import { VoluntarioData } from "@/hooks/useVoluntario";
 import { ElementType } from "react";
 
 interface CardBadgeProps {
-	titulo: string;
+	titulo: string | undefined;
 	as?: "green" | "muted";
 	className?: string;
 }

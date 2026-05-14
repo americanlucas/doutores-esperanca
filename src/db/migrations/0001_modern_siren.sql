@@ -1,0 +1,1 @@
+ALTER TABLE "voluntarios" ADD COLUMN "criado_em" date DEFAULT now();

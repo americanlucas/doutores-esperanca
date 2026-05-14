@@ -1,6 +1,6 @@
 {
-  "id": "5387637f-fe0b-456e-ba62-2e4c28ff1ea9",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "f66820c5-85df-4515-b469-d06761deb6c9",
+  "prevId": "5387637f-fe0b-456e-ba62-2e4c28ff1ea9",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -82,6 +82,13 @@
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
+        },
+        "criado_em": {
+          "name": "criado_em",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
         }
       },
       "indexes": {},

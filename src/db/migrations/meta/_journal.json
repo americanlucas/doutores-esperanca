@@ -5,8 +5,15 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1778701995317,
-      "tag": "0000_bumpy_millenium_guard",
+      "when": 1778702683135,
+      "tag": "0000_silky_steel_serpent",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1778766431172,
+      "tag": "0001_modern_siren",
       "breakpoints": true
     }
   ]

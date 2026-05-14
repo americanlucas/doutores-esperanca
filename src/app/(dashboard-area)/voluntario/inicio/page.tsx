@@ -1,5 +1,6 @@
-import CardHeaderItemAtividades from "@/components/UI/Card/Card-Components/CardHeaderItemAtividades";
+"use client";
 
+import CardHeaderItemAtividades from "@/components/UI/Card/Card-Components/CardHeaderItemAtividades";
 import CardMessage from "@/components/UI/Card/Card-Components/CardMessage";
 import CardProgress from "@/components/UI/Card/Card-Components/CardProgress";
 import CardStats from "@/components/UI/Card/Card-Components/CardStats";
@@ -14,25 +15,38 @@ import {
 import { Separator } from "@/components/UI/Styled-Components/separator";
 import { MessageSquareCheck } from "lucide-react";
 import Link from "next/link";
+import { useVoluntario } from "@/hooks/useVoluntario";
 
 export default function Inicio() {
+	const { voluntario, isLoading } = useVoluntario();
+
 	const now = new Date();
 
 	const dataFormatada = now.toLocaleDateString("pt-BR", {
-		weekday: "long", // Quinta-feira
-		day: "numeric", // 16
-		month: "long", // de abril
-		year: "numeric", // de 2026
+		weekday: "long",
+		day: "numeric",
+		month: "long",
+		year: "numeric",
 	});
 
 	const resultado =
 		dataFormatada.charAt(0).toUpperCase() + dataFormatada.slice(1);
 
+	// Extrai o primeiro nome do usuário
+	const primeiroNome = voluntario?.nome.split(" ")[0] || "Voluntário";
+
+	if (isLoading) {
+		return (
+			<div className="flex items-center justify-center h-screen">
+				<p>Carregando...</p>
+			</div>
+		);
+	}
+
 	return (
 		<>
 			<div>
-				{/* Capturar o nome do banco de dados */}
-				<h1 className="h1">Olá, Pedro</h1>
+				<h1 className="h1">Olá, {primeiroNome}</h1>
 				<CardDescription>
 					<span>{`${resultado}`}</span>
 				</CardDescription>

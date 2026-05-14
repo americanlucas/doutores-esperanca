@@ -28,6 +28,11 @@ export type CadastroState = {
 	errors: Record<string, string[]>;
 };
 
+export type UpdateState = {
+	success: boolean;
+	errors: Record<string, string[]>;
+};
+
 export type RecuperarSenhaState = {
 	success: boolean;
 	errors: Record<string, string[]>;

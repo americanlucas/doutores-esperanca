@@ -13,6 +13,7 @@ interface FormInputProps {
     required?: boolean
     pattern?: string
     errors?: string[]
+    disabled?: boolean
 }
 
 export default function FormInput (props: FormInputProps) {
@@ -27,6 +28,7 @@ export default function FormInput (props: FormInputProps) {
                 placeholder={props.placeholder}
                 maxLength={props.maxLength}
                 defaultValue={props.defaultValue}
+                disabled={props.disabled}
             />
         </div>
     )

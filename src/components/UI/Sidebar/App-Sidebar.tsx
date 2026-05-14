@@ -29,6 +29,7 @@ import {
 	DropdownMenuTrigger,
 } from "../Styled-Components/dropdown-menu";
 import { Logout } from "@/lib/actions";
+import { useVoluntario } from "@/hooks/useVoluntario";
 
 const data = {
 	navMain: [
@@ -47,6 +48,18 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+	const { voluntario, isLoading } = useVoluntario();
+
+	const primeiroNome = voluntario?.nome.split(" ")[0] || "Voluntário";
+
+	if (isLoading) {
+		return (
+			<div className="flex items-center justify-center h-screen">
+				<p>Carregando...</p>
+			</div>
+		);
+	}
+
 	const currentPath = usePathname();
 	const newCurrentPath = currentPath.split("/").pop();
 	const basePath = "/voluntario";
@@ -131,9 +144,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 							<div className="flex-r items-center justify-around hover:bg-black/5 transition-all ease-in-out duration-200 cursor-pointer rounded-sm px-1 py-2">
 								<IdCard size={30} />
 								<div className="flex-c items-start">
-									<span>Pedro</span>
+									<span>{primeiroNome}</span>
 									<span className="text-xs text-muted-foreground">
-										pedro@example.com
+										{voluntario?.email}
 									</span>
 								</div>
 								<EllipsisVertical />
@@ -141,9 +154,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 						</DropdownMenuTrigger>
 						<DropdownMenuContent>
 							<div className="flex-c px-2 py-1">
-								<span>Pedro</span>
+								<span>{primeiroNome}</span>
 								<span className="text-xs text-muted-foreground">
-									pedro@example.com
+									{voluntario?.email}
 								</span>
 							</div>
 							<DropdownMenuSeparator />

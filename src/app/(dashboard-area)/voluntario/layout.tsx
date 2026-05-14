@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import "@/app/globals.css";
@@ -10,6 +10,8 @@ import {
 } from "@/components/UI/Styled-Components/sidebar";
 import { AppSidebar } from "@/components/UI/Sidebar/App-Sidebar";
 import { Separator } from "@/components/UI/Styled-Components/separator";
+import { useVoluntario } from "@/hooks/useVoluntario";
+import Loading from "./loading";
 
 interface VoluntarioLayoutProps {
 	children: React.ReactNode;
@@ -18,6 +20,7 @@ interface VoluntarioLayoutProps {
 export default function VoluntarioLayout({ children }: VoluntarioLayoutProps) {
 	const router = useRouter();
 	const { status } = useSession();
+	const { voluntario } = useVoluntario();
 
 	useEffect(() => {
 		const handlePageShow = (e: PageTransitionEvent) => {
@@ -45,9 +48,13 @@ export default function VoluntarioLayout({ children }: VoluntarioLayoutProps) {
 				<div className="flex-r items-center py-md">
 					<SidebarTrigger className="cursor-pointer" />
 					<Separator className="m-2" orientation="vertical" />
-					<header>Doutores de Esperança</header>
+					<div className="flex-r items-center justify-between w-full pr-4">
+						<header>Doutores de Esperança</header>
+					</div>
 				</div>
-				<div className="flex-c gap-lg my-md px-md">{children}</div>
+				<div className="flex-c gap-lg my-md px-md">
+					<Suspense fallback={<Loading />}>{children}</Suspense>
+				</div>
 			</main>
 		</SidebarProvider>
 	);

@@ -17,8 +17,42 @@ import {
 import FormInput from "../Form/FormInput";
 import CardBadge from "./Card-Components/CardBadge";
 import CardProgress from "./Card-Components/CardProgress";
+import { useVoluntario } from "@/hooks/useVoluntario";
+import { updateVoluntarioPerfil } from "@/lib/voluntarioActions";
+import { useActionState } from "react";
+import { UpdateState } from "@/lib/actions";
 
 export default function CardPerfil() {
+	const { voluntario, isLoading } = useVoluntario();
+
+	if (isLoading) {
+		return (
+			<div className="flex items-center justify-center h-screen">
+				<p>Carregando...</p>
+			</div>
+		);
+	}
+
+	// Função para fazer parse seguro de data, evitando timezone issues
+	const parseLocalDate = (dateString: string | undefined): Date | null => {
+		if (!dateString) return null;
+		// Se for apenas YYYY-MM-DD, faz parse manual para manter a data local
+		const parts = dateString.split('T')[0].split('-');
+		if (parts.length === 3) {
+			return new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+		}
+		return new Date(dateString);
+	};
+
+	const criadoEm = parseLocalDate(voluntario?.criadoEm);
+	const formattedDate = criadoEm ? criadoEm.toLocaleDateString('pt-BR', {
+		day: "numeric",
+		month: "long",
+		year: "numeric",
+	}) : 'Data não disponível';
+
+	const resultado = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+
 	return (
 		<Card>
 			<CardHeader>
@@ -30,8 +64,8 @@ export default function CardPerfil() {
 					<div className="flex-c justify-between w-full gap-0.5">
 						<div className="flex-r items-center justify-between w-full">
 							{/* Capturar do banco de dados */}
-							<CardTitle>Pedro Álvares Cabral</CardTitle>
-							<Form action={"/voluntario/perfil"}>
+							<CardTitle>{voluntario?.nome}</CardTitle>
+							<Form action={"voluntario/perfil"}>
 								<Sheet>
 									<SheetTitle className="hidden">
 										Editar Perfil
@@ -46,61 +80,64 @@ export default function CardPerfil() {
 										<FormInput
 											label="Nome"
 											name="nome"
-											defaultValue="Pedro Álvares Cabral"
+											defaultValue={voluntario?.nome}
 											type="text"
 											required
 											placeholder="Digite seu nome"
 										/>
 										<FormInput
-											label="Endereço"
-											name="endereco"
-											defaultValue="Seu endereço atual"
-											type="text"
-											required
-											placeholder="Digite seu endereço"
-										/>
-										<FormInput
-											label="E-Mail"
-											name="email"
-											defaultValue="pedro.alvares.cabral@example.com"
-											type="email"
-											required
-											placeholder="Digite seu e-mail"
-										/>
-										<FormInput
-											label="Cidade"
-											name="cidade"
-											defaultValue="Sua cidade atual"
-											type="text"
-											required
-											placeholder="Digite sua cidade"
-										/>
-										<FormInput
 											label="Telefone"
 											name="telefone"
-											defaultValue="(11) 99999-9999"
+											defaultValue={voluntario?.telefone}
 											type="telefone"
 											required
 											placeholder="Digite seu telefone"
 										/>
 										<FormInput
-											label="CPF"
-											name="cpf"
-											defaultValue="123.456.789-00"
+											label="Endereço"
+											name="endereco"
+											defaultValue={voluntario?.endereco}
 											type="text"
 											required
-											placeholder="Digite seu CPF"
+											placeholder="Digite seu endereço"
 										/>
-                                        <SheetClose type="submit" className="botao-login">
-                                            Salvar Alterações
-                                        </SheetClose>
+										<FormInput
+											label="Bairro"
+											name="bairro"
+											defaultValue={voluntario?.bairro}
+											type="text"
+											required
+											placeholder="Digite sua bairro"
+										/>
+										<FormInput
+											label="Cep"
+											name="cep"
+											defaultValue={voluntario?.cep}
+											type="text"
+											required
+											placeholder="Digite seu cep"
+										/>
+										<FormInput
+											label="Data de Nascimento"
+											name="data de Nascimento"
+											defaultValue={voluntario?.dataNascimento}
+											type="text"
+											required
+											placeholder="Digite sua Data de Nascimento"
+										/>
+										<SheetClose
+											type="submit"
+											className="botao-login"
+										>
+											Salvar Alterações
+										</SheetClose>
 									</SheetContent>
 								</Sheet>
 							</Form>
 						</div>
-						<CardBadge as="green" titulo="Treineiro"/>
+						<CardBadge as="green" titulo={voluntario?.cargo} />
 						<CardDescription>
-							Membro desde Janeiro de 2025.
+							Membro desde {resultado}
 						</CardDescription>
 					</div>
 				</section>
@@ -109,7 +146,6 @@ export default function CardPerfil() {
 				<CardProgress
 					as="gray"
 					label="Perfil Completo"
-					progressValue={80}
 				/>
 			</CardContent>
 		</Card>
