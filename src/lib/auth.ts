@@ -13,7 +13,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 				email: { label: "Email", type: "email" },
 				senha: { label: "Senha", type: "password" },
 			},
-			async authorize(credentials, request) {
+			async authorize(credentials) {
 				if (!credentials?.email || !credentials?.senha) {
 					return null;
 				}
@@ -42,6 +42,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 				return {
 					id: voluntario.id.toString(),
 					nome: voluntario.nome,
+					name: voluntario.nome,
 					email: voluntario.email,
 					cpf: voluntario.cpf,
 					telefone: voluntario.telefone,
@@ -58,11 +59,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 	],
 	callbacks: {
 		// Callback JWT - adiciona dados do usuário ao token
-		async jwt({ token, user }) {
+		async jwt({ token, user, trigger }) {
 			if (user) {
-				token.id = user.id;
+				token.id = user.id as string;
 				token.nome = user.nome;
-				token.email = user.email;
+				token.name = user.nome;
+				token.email = user.email as string;
 				token.cpf = user.cpf;
 				token.telefone = user.telefone;
 				token.genero = user.genero;
@@ -73,23 +75,46 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 				token.dataNascimento = user.dataNascimento;
 				token.criadoEm = user.criadoEm;
 			}
+
+			// Se houver um gatilho de "update", buscamos os dados mais recentes do banco
+			if (trigger === "update" && token.id) {
+				const voluntario = await db
+					.select()
+					.from(voluntarios)
+					.where(eq(voluntarios.id, parseInt(token.id as string)))
+					.limit(1)
+					.then((rows) => rows[0]);
+
+				if (voluntario) {
+					token.nome = voluntario.nome;
+					token.name = voluntario.nome;
+					token.telefone = voluntario.telefone;
+					token.cargo = voluntario.cargo ?? "Não Informado";
+					token.endereco = voluntario.endereco ?? "Não Informado";
+					token.bairro = voluntario.bairro ?? "Não Informado";
+					token.cep = voluntario.cep ?? "Não Informado";
+					token.dataNascimento = voluntario.data_nascimento ?? "Não Informado";
+				}
+			}
+
 			return token;
 		},
 		// Callback Session - passa dados do token para a sessão
 		async session({ session, token }) {
 			if (token && session.user) {
-				session.user.id = token.id as string;
-				session.user.nome = token.nome as string;
-				session.user.email = token.email as string;
-				session.user.cpf = token.cpf as string;
-				session.user.telefone = token.telefone as string;
-				session.user.genero = token.genero as string;
-				session.user.cargo = token.cargo as string | undefined;
-				session.user.endereco = token.endereco as string | undefined;
-				session.user.bairro = token.bairro as string | undefined;
-				session.user.cep = token.cep as string | undefined;
-				session.user.dataNascimento = token.dataNascimento as string | undefined;
-				session.user.criadoEm = token.criadoEm as string | undefined;
+				session.user.id = token.id;
+				session.user.nome = token.nome;
+				session.user.name = token.nome;
+				session.user.email = token.email;
+				session.user.cpf = token.cpf;
+				session.user.telefone = token.telefone;
+				session.user.genero = token.genero;
+				session.user.cargo = token.cargo;
+				session.user.endereco = token.endereco;
+				session.user.bairro = token.bairro;
+				session.user.cep = token.cep;
+				session.user.dataNascimento = token.dataNascimento;
+				session.user.criadoEm = token.criadoEm;
 			}
 			return session;
 		},

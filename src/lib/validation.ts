@@ -8,6 +8,19 @@ export type LoginState = {
 	};
 };
 
+export type UpdatePerfilState = {
+	success?: boolean;
+	errors: {
+		nome?: string[];
+		telefone?: string[];
+		cargo?: string[];
+		endereco?: string[];
+		bairro?: string[];
+		cep?: string[];
+		dataNascimento?: string[];
+	};
+};
+
 export const CadastroFormSchema = z.object({
 	nome: z
 		.string()
@@ -67,3 +80,20 @@ export const RecuperarSenhaFormSchema = z
 		error: "As senhas não coincidem.",
 		path: ["confirmarSenha"],
 	});
+
+export const UpdatePerfilSchema = z.object({
+	nome: z
+		.string()
+		.min(2, { error: "O nome precisa ter mais de dois caracteres." })
+		.trim(),
+	telefone: z
+		.string()
+		.min(10, { error: "O número deve conter DDD + 9 números" })
+		.max(11, { error: "Não inclua caracteres especiais" })
+		.trim(),
+	cargo: z.string().optional(),
+	endereco: z.string().min(1, "Endereço é obrigatório").trim(),
+	bairro: z.string().min(1, "Bairro é obrigatório").trim(),
+	cep: z.string().length(8, { error: "O CEP deve conter 8 números" }).trim(),
+	dataNascimento: z.string().optional(),
+});

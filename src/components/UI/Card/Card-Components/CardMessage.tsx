@@ -1,5 +1,5 @@
 import { ElementType } from "react";
-import { CardTitle } from "../../Styled-Components/card";
+import { Card, CardTitle } from "../../Styled-Components/card";
 
 interface CardMessageProps {
 	icon: ElementType;
@@ -22,12 +22,12 @@ export default function CardMessage({icon: Icon, ...props}: CardMessageProps) {
 	}
 
 	return (
-		<div className={`flex-c rounded-xl px-6 py-4 gap-2 border border-gray-300 ${bgColorClass[props.bgColor]}`}>
+		<Card className={`flex-c rounded-xl shadow-xs px-6 py-4 gap-2 border border-gray-300 ${bgColorClass[props.bgColor]}`}>
 			<div className={`flex-r items-center gap-md ${textColorClass[props.textColor]}`}>
 				<Icon size={16} />
 				<CardTitle>{props.title}</CardTitle>
 			</div>
 			<p>{props.message}</p>
-		</div>
+		</Card>
 	);
 }

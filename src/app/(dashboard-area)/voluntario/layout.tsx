@@ -33,12 +33,6 @@ export default function VoluntarioLayout({ children }: VoluntarioLayoutProps) {
 		return () => window.removeEventListener("pageshow", handlePageShow);
 	}, [router]);
 
-	useEffect(() => {
-		if (status === "unauthenticated") {
-			router.replace("/");
-		}
-	}, [status, router]);
-
 	if (status === "loading") return null;
 
 	return (

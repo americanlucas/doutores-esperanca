@@ -5,13 +5,17 @@ import { db } from "@/db";
 import { voluntarios } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { auth } from "@/lib/auth";
+import { UpdateState } from "./actions";
+import { UpdatePerfilSchema, UpdatePerfilState } from "./validation";
+import { revalidatePath } from "next/cache";
+import z from "zod";
 
 /**
  * Busca dados completos do voluntário logado
  */
 export async function getVoluntarioData() {
 	const session = await auth();
-	
+
 	if (!session?.user?.id) {
 		throw new Error("Usuário não autenticado");
 	}
@@ -39,7 +43,7 @@ export async function getVoluntarioData() {
 export async function getVoluntarioStats(voluntarioId: string) {
 	// Exemplo: buscar do banco de dados
 	// const inscricoes = await db.select().from(inscricoes).where(eq(inscricoes.voluntarioId, voluntarioId));
-	
+
 	// Por enquanto, retorna dados mockados
 	return {
 		totalInscricoes: 3,
@@ -70,36 +74,74 @@ export async function getVoluntarioStats(voluntarioId: string) {
 }
 
 /**
- * Atualiza dados do perfil do voluntário
+ * Action para atualizar perfil via Formulário
  */
-export async function updateVoluntarioPerfil(data: {
-	nome?: string;
-	telefone?: string;
-	endereco?: string;
-	bairro?: string;
-	cep?: string;
-	dataNascimento?: string;
-}) {
+export async function UpdatePerfil(
+	_prevState: UpdateState,
+	formData: FormData,
+): Promise<UpdateState> {
 	const session = await auth();
-	
+
 	if (!session?.user?.id) {
-		throw new Error("Usuário não autenticado");
+		return {
+			success: false,
+			errors: { auth: ["Usuário não autenticado"] },
+		};
 	}
 
-	await db
-		.update(voluntarios)
-		.set({
-			...data,
-		})
-		.where(eq(voluntarios.id, parseInt(session.user.id)));
+	const validacao = UpdatePerfilSchema.safeParse({
+		nome: formData.get("nome") as string,
+		telefone: formData.get("telefone") as string,
+		cargo: formData.get("cargo") as string,
+		endereco: formData.get("endereco") as string,
+		bairro: formData.get("bairro") as string,
+		cep: formData.get("cep") as string,
+		dataNascimento: formData.get("dataNascimento") as string,
+	});
 
-	return { success: true };
+	if (!validacao.success) {
+		return {
+			success: false,
+			errors: z.flattenError(validacao.error).fieldErrors,
+		};
+	}
+
+	const { nome, telefone, cargo, endereco, bairro, cep, dataNascimento } =
+		validacao.data;
+
+	try {
+		await db
+			.update(voluntarios)
+			.set({
+				nome,
+				telefone,
+				cargo: cargo as any, // Cast para o enum do Drizzle
+				endereco,
+				bairro,
+				cep,
+				data_nascimento: dataNascimento,
+			})
+			.where(eq(voluntarios.id, parseInt(session.user.id)));
+
+		revalidatePath("/voluntario/perfil");
+		revalidatePath("/voluntario/inicio");
+
+		return { success: true, errors: {} };
+	} catch (error) {
+		console.error("Erro ao atualizar perfil:", error);
+		return {
+			success: false,
+			errors: { database: ["Erro ao atualizar dados no banco."] },
+		};
+	}
 }
 
 /**
  * Calcula progresso do perfil
  */
-export async function calcularProgressoPerfil(voluntarioId: string | undefined) {
+export async function calcularProgressoPerfil(
+	voluntarioId: string | undefined,
+) {
 	if (!voluntarioId) {
 		return {
 			dadosPessoais: 0,
@@ -128,7 +170,7 @@ export async function calcularProgressoPerfil(voluntarioId: string | undefined) 
 	}
 
 	// Calcula progresso de cada seção
-	const dadosPessoais = 
+	const dadosPessoais =
 		(voluntario.nome ? 25 : 0) +
 		(voluntario.email ? 25 : 0) +
 		(voluntario.cpf ? 25 : 0) +
@@ -144,7 +186,9 @@ export async function calcularProgressoPerfil(voluntarioId: string | undefined) 
 	// Anexos precisaria verificar em outra tabela
 	const anexos = 40; // Exemplo: 40%
 
-	const geral = Math.round((dadosPessoais + endereco + anexos + telefone) / 4);
+	const geral = Math.round(
+		(dadosPessoais + endereco + anexos + telefone) / 4,
+	);
 
 	return {
 		dadosPessoais,

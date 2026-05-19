@@ -5,8 +5,11 @@ import { Card, CardDescription, CardTitle } from "../../Styled-Components/card";
 import { Separator } from "../../Styled-Components/separator";
 import CardBadge from "./CardBadge";
 import CardTermoTopico from "./CardTermoTopico";
+import { useVoluntario } from "@/hooks/useVoluntario";
 
 export default function CardTermos() {
+	const {voluntario} = useVoluntario()
+
 	return (
 		<Card>
 			<div className="flex-r justify-between">
@@ -34,7 +37,7 @@ export default function CardTermos() {
 				<div className="px-lg">
 					<CardDescription>Aceito em 10/01/2024</CardDescription>
 					<CardTitle className="text-green-700">
-						por Pedro Álvares Cabral
+						por {voluntario?.nome}
 					</CardTitle>
 				</div>
 				<div className="flex-r-center gap-2 px-lg">

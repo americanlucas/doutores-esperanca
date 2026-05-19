@@ -5,12 +5,19 @@ import { NextResponse } from "next/server";
 export default auth((req) => {
   const isLoggedIn = !!req.auth;
   const isOnDashboard = req.nextUrl.pathname.startsWith("/voluntario");
+  const isLoginPage = req.nextUrl.pathname === "/";
 
+  // Redireciona para o início se tentar acessar o login já autenticado
+  if (isLoginPage && isLoggedIn) {
+    return NextResponse.redirect(new URL("/voluntario/inicio", req.url));
+  }
+
+  // Protege as rotas do dashboard
   if (isOnDashboard && !isLoggedIn) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 });
 
 export const config = {
-  matcher: ["/voluntario/:path*"],
+  matcher: ["/voluntario/:path*", "/"],
 };

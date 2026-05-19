@@ -118,8 +118,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 											>
 												<SidebarMenuSubButton
 													className={`
-														${newCurrentPath === item.url ? "font-bold" : "font-medium"}
-														${newCurrentPath === item.url ? "text-black" : "text-zinc-700"}
+														${newCurrentPath === item.url ? 
+															"font-bold bg-green-100/80 text-green-700" : 
+															"font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+														}
 													`}
 													asChild
 												>

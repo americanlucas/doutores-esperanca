@@ -18,7 +18,7 @@ export interface VoluntarioData {
 }
 
 export function useVoluntario() {
-	const { data: session, status } = useSession();
+	const { data: session, status, update } = useSession();
 
 	const voluntario = session?.user as VoluntarioData | undefined;
 
@@ -26,5 +26,6 @@ export function useVoluntario() {
 		voluntario,
 		isLoading: status === "loading",
 		isAuthenticated: status === "authenticated",
+		update,
 	};
 }

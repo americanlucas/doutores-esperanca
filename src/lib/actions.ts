@@ -100,8 +100,8 @@ export async function Login(
 	try {
 		await signIn("credentials", {
 			email,
-			senha, // ← chave "senha" deve bater com credentials do provider
-			redirect: false,
+			senha,
+			redirectTo: "/voluntario/inicio",
 		});
 	} catch (error) {
 		if (error instanceof AuthError) {
@@ -110,10 +110,11 @@ export async function Login(
 				errors: { email: ["Email ou senha inválidos."] },
 			};
 		}
+		// É necessário relançar o erro para que o Next.js trate o redirecionamento
 		throw error;
 	}
 
-	redirect("/voluntario/inicio");
+	return { success: true, errors: {} };
 }
 
 export async function Logout() {
