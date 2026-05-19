@@ -1,5 +1,45 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## 📄 Projeto: Doutores da Esperança
+
+O projeto **Doutores da Esperança** é uma plataforma web desenvolvida para a gestão de voluntários. O sistema permite o cadastro de novos membros, gerenciamento de perfis, acompanhamento de inscrições em atividades, envio de anexos e aceitação de termos de uso. O objetivo é centralizar e facilitar a organização das atividades dos voluntários em um ambiente seguro e intuitivo.
+
+## 🛠️ Bibliotecas e Dependências
+
+### Core
+- **Framework:** [Next.js 16](https://nextjs.org/) (App Router)
+- **Linguagem:** [TypeScript](https://www.typescriptlang.org/)
+- **Estilização:** [Tailwind CSS 4](https://tailwindcss.com/), [Lucide React](https://lucide.dev/) (ícones)
+
+### Banco de Dados & Autenticação
+- **ORM:** [Drizzle ORM](https://orm.drizzle.team/)
+- **Database:** [Neon Database](https://neon.tech/) (PostgreSQL Serverless)
+- **Auth:** [NextAuth.js v5](https://authjs.dev/)
+- **Validação:** [Zod](https://zod.dev/)
+
+### UI & UX
+- **Componentes:** [Radix UI](https://www.radix-ui.com/), [Shadcn UI](https://ui.shadcn.com/)
+- **Carrossel:** [Embla Carousel](https://www.embla-carousel.com/)
+- **Utilitários:** `clsx`, `tailwind-merge`, `class-variance-authority`
+
+## 📂 Estrutura de Pastas
+
+```text
+src/
+├── app/                  # Rotas e páginas da aplicação (App Router)
+│   ├── (dashboard-area)/ # Área administrativa do voluntário
+│   ├── (login-area)/     # Páginas de autenticação (Login, Cadastro)
+│   ├── api/              # Endpoints da API
+│   └── globals.css       # Estilos globais
+├── components/           # Componentes React reutilizáveis
+│   └── UI/               # Componentes de interface (Cards, Forms, Sidebar)
+├── db/                   # Configuração do banco de dados e schemas (Drizzle)
+├── hooks/                # Hooks customizados
+├── lib/                  # Lógica compartilhada, Server Actions e utilitários
+└── types/                # Definições de tipos TypeScript
+public/                   # Ativos estáticos (imagens, ícones)
+```
+
 ## Getting Started
 
 First, run the development server:
