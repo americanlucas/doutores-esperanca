@@ -1,12 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
+import { Card, CardContent, CardHeader, CardTitle } from "../../../components/UI/Styled-Components/card"
+import { Button } from "../../../components/UI/Styled-Components/button"
+import { Input } from "../../../components/UI/Styled-Components/input"
+import { Label } from "../../../components/UI/Styled-Components/label"
+import { Badge } from "../../../components/UI/Styled-Components/badge"
+import { Progress } from "../../../components/UI/Styled-Components/progress"
 import {
   Dialog,
   DialogContent,
@@ -15,14 +15,14 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "../../../components/UI/Styled-Components/dialog"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "../../../components/UI/Styled-Components/select"
 import {
   Table,
   TableBody,
@@ -30,8 +30,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { Textarea } from "@/components/ui/textarea"
+} from "../../../components/UI/Styled-Components/table"
+import { Textarea } from "../../../components/UI/Styled-Components/textarea"
 import {
   Plus,
   Calendar,

@@ -18,7 +18,7 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible"
+} from "../../components/UI/Styled-Components/collapsible"
 import { useState } from "react"
 
 const menuItems = [

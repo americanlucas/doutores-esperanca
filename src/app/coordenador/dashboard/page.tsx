@@ -1,14 +1,14 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "../../../components/UI/Styled-Components/card"
+import { Button } from "../../../components/UI/Styled-Components/button"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "../../../components/UI/Styled-Components/select"
 import {
   BarChart,
   Bar,

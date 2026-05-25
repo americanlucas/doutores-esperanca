@@ -9,7 +9,7 @@ export default function CoordinatorLayout({
 }) {
   return (
     <div className="min-h-screen bg-gray-50">
-      <ColorfulBorder />
+      
       
       <div className="flex pt-2 pb-2 pl-2 pr-2">
         <CoordinatorSidebar />

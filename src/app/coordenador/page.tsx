@@ -1,9 +1,9 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
+import { Card, CardContent, CardHeader, CardTitle } from "../../components/UI/Styled-Components/card"
+import { Badge } from "../../components/UI/Styled-Components/badge"
+import { Button } from "../../components/UI/Styled-Components/button"
+import { Progress } from "../../components/UI/Styled-Components/progress"
 import {
   Users,
   Calendar,

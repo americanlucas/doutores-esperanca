@@ -1,14 +1,14 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import { Button } from "../../components/UI/Styled-Components/button"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "../../components/UI/Styled-Components/select"
 import { MapPin, Bell, Menu } from "lucide-react"
 
 interface HeaderProps {

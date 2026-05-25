@@ -1,18 +1,18 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
+import { Card, CardContent, CardHeader, CardTitle } from "../../../components/UI/Styled-Components/card"
+import { Button } from "../../../components/UI/Styled-Components/button"
+import { Input } from "../../../components/UI/Styled-Components/input"
+import { Badge } from "../../../components/UI/Styled-Components/badge"
+import { Progress } from "../../../components/UI/Styled-Components/progress"
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
+} from "../../../components/UI/Styled-Components/dialog"
 import {
   Table,
   TableBody,
@@ -20,8 +20,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+} from "../../../components/UI/Styled-Components/table"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../components/UI/Styled-Components/tabs"
 import {
   Search,
   Users,

@@ -1,10 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "../../../components/UI/Styled-Components/card"
+import { Button } from "../../../components/UI/Styled-Components/button"
+import { Input } from "../../../components/UI/Styled-Components/input"
+import { Badge } from "../../../components/UI/Styled-Components/badge"
 import {
   Dialog,
   DialogContent,
@@ -12,14 +12,14 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
+} from "../../../components/UI/Styled-Components/dialog"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "../../../components/UI/Styled-Components/select"
 import {
   Table,
   TableBody,
@@ -27,8 +27,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { Textarea } from "@/components/ui/textarea"
+} from "../../../components/UI/Styled-Components/table"
+import { Textarea } from "../../../components/UI/Styled-Components/textarea"
 import {
   Search,
   BookOpen,
