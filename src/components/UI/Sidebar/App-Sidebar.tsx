@@ -41,7 +41,7 @@ const data = {
 				{ title: "Perfil", url: "perfil" },
 				{ title: "Meus Anexos", url: "meus-anexos" },
 				{ title: "Termos", url: "termos" },
-				{ title: "Minhas Inscrições", url: "minhas-inscricoes" },
+				{ title: "Atividades", url: "atividades" },
 			],
 		},
 	],
@@ -144,9 +144,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 					<DropdownMenu>
 						<DropdownMenuTrigger>
 							<div className="flex-r items-center justify-around hover:bg-black/5 transition-all ease-in-out duration-200 cursor-pointer rounded-sm px-1 py-2">
-								<IdCard size={30} />
 								<div className="flex-c items-start">
-									<span>{primeiroNome}</span>
+									<span className="font-semibold">{primeiroNome}</span>
 									<span className="text-xs text-muted-foreground">
 										{voluntario?.email}
 									</span>

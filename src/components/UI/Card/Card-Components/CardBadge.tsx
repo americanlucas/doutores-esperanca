@@ -1,28 +1,26 @@
 import { VoluntarioData } from "@/hooks/useVoluntario";
 import { ElementType } from "react";
+import { Badge } from "../../Styled-Components/badge";
 
 interface CardBadgeProps {
 	titulo: string | undefined;
-	as?: "green" | "muted";
+	color: "azul" | "roxo" | "cinza" | "laranja" | "verde" | "vermelho";
 	className?: string;
 }
 
-export default function CardBadge({
-	titulo,
-	as,
-	className,
-}: CardBadgeProps) {
-	const bgClass = as === "green" ? "bg-green-50" : "bg-muted";
-	const textClass =
-		as === "green" ? "text-green-700" : "text-muted-foreground";
+export default function CardBadge({color, ...props}: CardBadgeProps) {
+	const colorClass = {
+		azul: "bg-blue-100 text-blue-700",
+		roxo: "bg-purple-100 text-purple-700",
+		cinza: "bg-gray-100 text-gray-700",
+		laranja: "bg-orange-100 text-orange-700",
+		verde: "bg-green-100 text-green-700",
+		vermelho: "bg-red-100 text-red-700",
+	};
 
 	return (
-		<div>
-			<p
-				className={`${bgClass} ${textClass} ${className} border w-fit py-1 px-2 rounded-full`}
-			>
-				{titulo}
-			</p>
-		</div>
+		<>
+			<Badge className={`${colorClass[color]} ${props.className}`}>{props.titulo}</Badge>
+		</>
 	);
 }

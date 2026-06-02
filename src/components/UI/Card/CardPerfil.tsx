@@ -93,7 +93,7 @@ export default function CardPerfil() {
 						<div className="flex-r items-center justify-between w-full">
 							<div className="flex-r-center gap-md">
 								<CardTitle>{voluntario?.nome}</CardTitle>
-								<CardBadge as="green" titulo={voluntario?.cargo} />
+								<CardBadge color="verde" titulo={voluntario?.cargo} />
 							</div>
 							<Dialog>
 								<DialogTitle className="hidden">
@@ -106,8 +106,9 @@ export default function CardPerfil() {
 								</DialogTrigger>
 								<DialogContent className="flex-c p-md gap-md overflow-y-auto max-h-[90vh]">
 									<CardTitle>Editar Perfil</CardTitle>
-									<form action={action} className="flex flex-col gap-4">
+									<form action={action} className="grid grid-cols-4 gap-md">
 										<FormInput
+											className="col-span-4"
 											label="Nome"
 											name="nome"
 											defaultValue={voluntario?.nome}
@@ -118,6 +119,7 @@ export default function CardPerfil() {
 										{state.errors.nome && <p className="text-red-500 text-xs">{state.errors.nome[0]}</p>}
 										
 										<FormInput
+											className="col-span-2"
 											label="Telefone"
 											name="telefone"
 											defaultValue={voluntario?.telefone}
@@ -127,7 +129,17 @@ export default function CardPerfil() {
 										/>
 										{state.errors.telefone && <p className="text-red-500 text-xs">{state.errors.telefone[0]}</p>}
 
-										<div>
+										<FormInput
+											className="col-span-2"
+											label="Cep"
+											name="cep"
+											defaultValue={voluntario?.cep}
+											type="text"
+											required
+											placeholder="Digite seu cep"
+										/>
+										{state.errors.cep && <p className="text-red-500 text-xs">{state.errors.cep[0]}</p>}
+										<div className="col-span-4">
 											<label htmlFor="cargo">Cargo</label>
 											<Select name="cargo" defaultValue={voluntario?.cargo}>
 												<SelectTrigger className="w-full">
@@ -147,6 +159,7 @@ export default function CardPerfil() {
 										</div>
 
 										<FormInput
+											className="col-span-2"
 											label="Endereço"
 											name="endereco"
 											defaultValue={voluntario?.endereco}
@@ -155,6 +168,7 @@ export default function CardPerfil() {
 											placeholder="Digite seu endereço"
 										/>
 										<FormInput
+											className="col-span-2"
 											label="Bairro"
 											name="bairro"
 											defaultValue={voluntario?.bairro}
@@ -162,17 +176,9 @@ export default function CardPerfil() {
 											required
 											placeholder="Digite sua bairro"
 										/>
-										<FormInput
-											label="Cep"
-											name="cep"
-											defaultValue={voluntario?.cep}
-											type="text"
-											required
-											placeholder="Digite seu cep"
-										/>
-										{state.errors.cep && <p className="text-red-500 text-xs">{state.errors.cep[0]}</p>}
 
 										<FormInput
+											className="col-span-4"
 											label="Data de Nascimento"
 											name="dataNascimento"
 											defaultValue={
@@ -181,11 +187,12 @@ export default function CardPerfil() {
 											type="date"
 											required
 											placeholder="Digite sua Data de Nascimento"
+											disabled
 										/>
 
-										<div className="flex justify-end gap-2 mt-4">
+										<div className="grid gap-md grid-cols-2 col-span-4">
 											<DialogClose asChild>
-												<Button type="button" variant="ghost">Cancelar</Button>
+												<Button type="button" variant="destructive">Cancelar</Button>
 											</DialogClose>
 											<Button
 												type="submit"
