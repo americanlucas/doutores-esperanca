@@ -5,6 +5,7 @@ import CardDados from "@/components/UI/Card/CardDados";
 import CardAtividades from "@/components/UI/Card/CardAtividades";
 import CardInscricoes from "@/components/UI/Card/CardInscrições";
 import { useVoluntario } from "@/hooks/useVoluntario";
+import CardAvisos from "@/components/UI/Card/CardAvisos";
 
 export default function Perfil() {
 
@@ -15,9 +16,9 @@ export default function Perfil() {
 				<CardPerfil/>
 				<div className="grid-2 gap-md">
 					<CardDados/>
-					<CardAtividades />
+					<CardAvisos />
 				</div>
-				<CardInscricoes />
+				<CardAtividades/>
 			</section>
 		</>
 	);

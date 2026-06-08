@@ -20,12 +20,12 @@ export default function CardTermos() {
 				<div className="flex-r-center gap-2 px-lg">
 					<CardBadge
 						titulo="v2.0"
-						as="green"
+						color="verde"
 						className="cursor-pointer"
 					/>
 					<CardBadge
 						titulo="v1.0"
-						as="muted"
+						color="cinza"
 						className="cursor-pointer"
 					/>
 				</div>
@@ -43,7 +43,7 @@ export default function CardTermos() {
 				<div className="flex-r-center gap-2 px-lg">
 					<CardBadge
 						titulo="Aceito"
-						as="green"
+						color="verde"
 					/>
 				</div>
 			</div>

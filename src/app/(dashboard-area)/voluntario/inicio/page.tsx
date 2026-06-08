@@ -13,7 +13,7 @@ import {
 	CardTitle,
 } from "@/components/UI/Styled-Components/card";
 import { Separator } from "@/components/UI/Styled-Components/separator";
-import { MessageSquareCheck } from "lucide-react";
+import { Book, Check, Clock, MessageSquareCheck, User } from "lucide-react";
 import Link from "next/link";
 import { useVoluntario } from "@/hooks/useVoluntario";
 
@@ -61,10 +61,10 @@ export default function Inicio() {
 				/>
 			</div>
 			<div className="grid-4 gap-md">
-				<CardStats titulo="Inscrições" quantidade={3} as="black" />
-				<CardStats titulo="Realizadas" quantidade={0} as="yellow" />
-				<CardStats titulo="Horas" quantidade={4} as="green" />
-				<CardStats
+				<CardStats icon={Book} titulo="Inscrições" quantidade={3} as="black" />
+				<CardStats icon={Check} titulo="Realizadas" quantidade={0} as="yellow" />
+				<CardStats icon={Clock} titulo="Horas" quantidade={4} as="green" />
+				<CardStats icon={User} 
 					titulo="Perfil Completo"
 					quantidade={80}
 					as="green"
@@ -74,9 +74,16 @@ export default function Inicio() {
 			<div className="grid-2 gap-md">
 				<Card>
 					<CardHeader>
-						<CardTitle>Próximas Atividades</CardTitle>
+						<div className="flex-r items-center justify-between">
+							<CardTitle>Próximas Atividades</CardTitle>
+							<Link href={"/voluntario/atividades"}>
+								<Button variant={"link"} className="w-fit">
+									Ver Atividades
+								</Button>
+							</Link>
+						</div>
 					</CardHeader>
-					<CardContent className="flex-c">
+					<CardContent className="flex-c gap-md">
 						<CardHeaderItemAtividades
 							titulo="Hospital Santa Lúcia Sul"
 							modalidade="Canto"
@@ -85,7 +92,6 @@ export default function Inicio() {
 							mes="Jun"
 							status="Confirmada"
 						/>
-						<Separator className="separator-h mt-4" />
 						<CardHeaderItemAtividades
 							titulo="Hospital Santa Lúcia Norte"
 							modalidade="Canto"
@@ -94,7 +100,6 @@ export default function Inicio() {
 							mes="Jun"
 							status="Pendente"
 						/>
-						<Separator className="separator-h mt-4" />
 						<CardHeaderItemAtividades
 							titulo="Hospital Santa Lúcia Sul"
 							modalidade="Canto"

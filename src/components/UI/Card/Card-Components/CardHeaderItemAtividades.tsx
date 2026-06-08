@@ -15,11 +15,11 @@ export default function CardHeaderItemAtividades(
 	props: CardHeaderItemAtividadesProps,
 ) {
 	return (
-		<div className={`flex-r items-center justify-between ${props.status === "Cancelada" && `opacity-20`}`}>
+		<div className={`flex-r items-center justify-between gap-md p-3 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors ${props.status === "Cancelada" && `opacity-20`}`}>
 			<div className="flex items-center gap-md px-2">
-				<div className="flex-c-center py-2 px-md bg-green-200/40 rounded w-fit">
-					<h2 className="h3">{props.dia}</h2>
-					<h3>{props.mes}</h3>
+				<div className="text-center min-w-12.5">
+                    <p className="text-2xl font-bold text-gray-900">{props.dia}</p>
+                    <p className="text-xs text-gray-500 uppercase">{props.mes}</p>
 				</div>
 				<div>
 					<CardTitle>{props.titulo}</CardTitle>
@@ -30,8 +30,8 @@ export default function CardHeaderItemAtividades(
 			</div>
 			{
 				props.status === "Confirmada" ? 
-					<CardBadge titulo={props.status} as={`green`}/> :
-					<CardBadge titulo={props.status} as={`muted`}/>
+					<CardBadge titulo={props.status} color={`verde`}/> :
+					<CardBadge titulo={props.status} color={`cinza`}/>
 			}
 		</div>
 	);

@@ -16,7 +16,7 @@ export default function CardInscricoes() {
 		<Card>
 			<div className="flex-r justify-between px-md pl-6">
 				<CardTitle>Minhas Inscrições</CardTitle>
-				<Link href="/voluntario/minhas-inscricoes">
+				<Link href="/voluntario/atividades">
 					<Button variant="link" size="sm">
 						Consultar inscrições
 					</Button>
@@ -32,7 +32,7 @@ export default function CardInscricoes() {
 						modalidade="Canto"
 					/>
 					<div className="flex items-center gap-md px-2">
-						<CardBadge titulo="Canto" />
+						<CardBadge color="roxo" titulo="Canto" />
 					</div>
 				</div>
 			</CardContent>
