@@ -47,7 +47,7 @@ export default async function RootLayout({
 		>
 			<body className="h-full flex flex-col">
 				<SessionProvider session={session}>
-					<BordaColorida>{children}</BordaColorida>
+					{children}
 				</SessionProvider>
 			</body>
 		</html>
