@@ -1,0 +1,36 @@
+import { BookCheckIcon, CheckIcon, Clock, MessageSquareWarning } from "lucide-react";
+import { Button } from "../Styled-Components/button";
+import {
+	Card,
+	CardHeader,
+	CardTitle,
+} from "../Styled-Components/card";
+import CardStats from "./Card-Components/CardStats";
+import CardMessage from "./Card-Components/CardMessage";
+
+export default function CardAvisos() {
+	return (
+		<Card>
+			{/* Capturar do banco de dados */}
+			<CardHeader>
+				<CardTitle>Resumo de Atividades</CardTitle>
+				<div className="grid-2 gap-md">
+					<CardStats icon={BookCheckIcon} as="black" quantidade={2} titulo="Inscrições" />
+					<CardStats icon={CheckIcon} as="green" quantidade={0} titulo="Realizadas" />
+				</div>
+			</CardHeader>
+			<CardHeader>
+				<CardTitle>Avisos</CardTitle>
+				<div className="grid-1 gap-md">
+					<CardMessage
+						bgColor="message"
+						textColor="message"
+						icon={MessageSquareWarning}
+						title="Treinamento"
+						message="Caros voluntários, nosso treinamento ocorrerá amanhã às 9h via Google Meet!"
+					/>
+				</div>
+			</CardHeader>
+		</Card>
+	);
+}
