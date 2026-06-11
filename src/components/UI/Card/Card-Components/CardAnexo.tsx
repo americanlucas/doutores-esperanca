@@ -25,9 +25,9 @@ export default function CardAnexo({ ...props }: CardAnexoProps) {
                     <CardTitle>{props.title}</CardTitle>
                     <CardDescription>{props.descricao}</CardDescription>
                 </div>
-                {props.status === "enviado" && <CardBadge titulo="Enviado" as="green" />}
-                {props.status === "revisão" && <CardBadge titulo="Revisão" as="muted" />}
-                {props.status === "pendente" && <CardBadge titulo="Pendente" as="muted" />}
+                {props.status === "enviado" && <CardBadge titulo="Enviado" color="green" />}
+                {props.status === "revisão" && <CardBadge titulo="Revisão" color="orange" />}
+                {props.status === "pendente" && <CardBadge titulo="Pendente" color="muted" />}
 			</div>
 			<Separator className="my-1"/>
             <div className="flex-r justify-between items-center">

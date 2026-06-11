@@ -13,8 +13,10 @@ import {
   MapPin,
   Clock,
   AlertCircle,
+  MessageCircleMore,
 } from "lucide-react"
 import Link from "next/link"
+import CardMessage from "@/components/UI/Card/Card-Components/CardMessage"
 
 const statsCards = [
   {
@@ -131,15 +133,16 @@ export default function CoordinatorDashboard() {
       </div>
 
       {/* Alert Banner */}
-      <div className="bg-green-100 border-l-4 border-green-500 p-4 rounded-r-lg flex items-start gap-3">
+      {/* <div className="bg-green-100 border-l-4 border-green-500 p-4 rounded-r-lg flex items-start gap-3">
         <CheckSquare className="w-5 h-5 text-green-600 mt-0.5" />
         <div>
           <p className="font-medium text-green-800">Treinamento</p>
           <p className="text-green-700 text-sm">
-            {"Caros voluntários, nosso treinamento ocorrerá amanhã às 9h via Google Meet!"}
+            {}
           </p>
         </div>
-      </div>
+      </div> */}
+      <CardMessage bgColor="message" icon={MessageCircleMore} message="Caros voluntários, nosso treinamento ocorrerá amanhã às 9h via Google Meet!" textColor="message" title="Treinamento"/>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -243,7 +246,7 @@ export default function CoordinatorDashboard() {
               {recentActivities.map((activity) => (
                 <div
                   key={activity.id}
-                  className="flex items-center gap-4 p-3 rounded-lg border border-gray-100"
+                  className="flex items-center gap-4 p-3 rounded-lg border border-gray-100 hover:bg-gray-100 hover:transition-colors "
                 >
                   <div className="w-2 h-2 rounded-full bg-green-500" />
                   <div className="flex-1">
@@ -259,7 +262,7 @@ export default function CoordinatorDashboard() {
       </div>
 
       {/* Quick Actions */}
-      <Card className="border-gray-200">
+      {/* <Card className="border-gray-200">
         <CardHeader>
           <CardTitle className="text-lg font-semibold">Ações Rápidas</CardTitle>
         </CardHeader>
@@ -291,7 +294,7 @@ export default function CoordinatorDashboard() {
             </Link>
           </div>
         </CardContent>
-      </Card>
+      </Card> */}
     </div>
   )
 }

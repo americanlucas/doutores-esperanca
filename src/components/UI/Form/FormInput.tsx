@@ -19,7 +19,7 @@ interface FormInputProps {
 export default function FormInput (props: FormInputProps) {
 
     return(
-        <div className={`flex flex-col ${props.className ? props.className : ""}`}>
+        <div className={`flex flex-col ${props.className}`}>
             <label htmlFor={props.name}>{props.label}</label>
             <Input
                 type={props.type}

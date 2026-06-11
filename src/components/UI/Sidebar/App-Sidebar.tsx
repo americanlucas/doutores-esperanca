@@ -87,9 +87,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 									/>
 								</div>
 								<div className="flex flex-col gap-0.5 leading-none">
-									<span className="font-semibold">
-										Doutores de Esperança
-									</span>
+									<span className="font-semibold">Doutores de Esperança</span>
 								</div>
 							</Link>
 						</SidebarMenuButton>
@@ -113,21 +111,18 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 								{item.items?.length ? (
 									<SidebarMenuSub>
 										{item.items.map((item) => (
-											<SidebarMenuSubItem
-												key={item.title}
-											>
+											<SidebarMenuSubItem key={item.title}>
 												<SidebarMenuSubButton
 													className={`
-														${newCurrentPath === item.url ? 
-															"font-bold bg-green-100/80 text-green-700" : 
-															"font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+														${
+															newCurrentPath === item.url
+																? "font-bold bg-green-100/80 text-green-700"
+																: "font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900"
 														}
 													`}
 													asChild
 												>
-													<Link
-														href={`${basePath}/${item.url}`}
-													>
+													<Link href={`${basePath}/${item.url}`}>
 														{item.title}
 													</Link>
 												</SidebarMenuSubButton>
@@ -143,10 +138,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 					<Separator className="separator-h" />
 					<DropdownMenu>
 						<DropdownMenuTrigger>
-							<div className="flex-r items-center justify-around hover:bg-black/5 transition-all ease-in-out duration-200 cursor-pointer rounded-sm px-1 py-2">
-								<IdCard size={30} />
+							<div className="flex-r items-center justify-between hover:bg-black/5 transition-all ease-in-out duration-200 cursor-pointer rounded-sm p-2">
 								<div className="flex-c items-start">
-									<span>{primeiroNome}</span>
+									<span className="font-semibold">{primeiroNome}</span>
 									<span className="text-xs text-muted-foreground">
 										{voluntario?.email}
 									</span>
@@ -163,10 +157,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 							</div>
 							<DropdownMenuSeparator />
 							<DropdownMenuItem asChild>
-								<Link
-									className="w-full"
-									href="/voluntario/perfil"
-								>
+								<Link className="w-full" href="/voluntario/perfil">
 									Perfil
 								</Link>
 							</DropdownMenuItem>

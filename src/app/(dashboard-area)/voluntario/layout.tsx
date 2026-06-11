@@ -40,13 +40,13 @@ export default function VoluntarioLayout({ children }: VoluntarioLayoutProps) {
 			<AppSidebar />
 			<main className="w-full">
 				<div className="flex-r items-center py-md">
-					<SidebarTrigger className="cursor-pointer" />
+					<SidebarTrigger className="pl-4 cursor-pointer" />
 					<Separator className="m-2" orientation="vertical" />
 					<div className="flex-r items-center justify-between w-full pr-4">
 						<header>Doutores de Esperança</header>
 					</div>
 				</div>
-				<div className="flex-c gap-lg my-md px-md">
+				<div className="flex-c gap-lg my-md p-md">
 					<Suspense fallback={<Loading />}>{children}</Suspense>
 				</div>
 			</main>

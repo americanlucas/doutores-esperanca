@@ -39,7 +39,10 @@ const initialUpdateState: UpdateState = {
 
 export default function CardPerfil() {
 	const { voluntario, isLoading, update } = useVoluntario();
-	const [state, action, isPending] = useActionState(UpdatePerfil, initialUpdateState);
+	const [state, action, isPending] = useActionState(
+		UpdatePerfil,
+		initialUpdateState,
+	);
 
 	useEffect(() => {
 		if (state.success) {
@@ -93,12 +96,23 @@ export default function CardPerfil() {
 						<div className="flex-r items-center justify-between w-full">
 							<div className="flex-r-center gap-md">
 								<CardTitle>{voluntario?.nome}</CardTitle>
-								<CardBadge as="green" titulo={voluntario?.cargo} />
+								<CardBadge
+									color={
+										voluntario?.cargo === "Música"
+											? "green"
+											: voluntario?.cargo === "Intercessão"
+												? "blue"
+												: voluntario?.cargo === "Staff"
+													? "orange"
+													: voluntario?.cargo === "Coordenador de equipes"
+														? "purple"
+														: "muted"
+									}
+									titulo={voluntario?.cargo}
+								/>
 							</div>
 							<Dialog>
-								<DialogTitle className="hidden">
-									Editar Perfil
-								</DialogTitle>
+								<DialogTitle className="hidden">Editar Perfil</DialogTitle>
 								<DialogTrigger asChild>
 									<Button variant={"outline"} size={"sm"}>
 										Editar Perfil
@@ -106,8 +120,12 @@ export default function CardPerfil() {
 								</DialogTrigger>
 								<DialogContent className="flex-c p-md gap-md overflow-y-auto max-h-[90vh]">
 									<CardTitle>Editar Perfil</CardTitle>
-									<form action={action} className="flex flex-col gap-4">
+									<CardDescription>
+										Altere suas informações pessoais.
+									</CardDescription>
+									<form action={action} className="grid-4 gap-4">
 										<FormInput
+											className="col-span-4"
 											label="Nome"
 											name="nome"
 											defaultValue={voluntario?.nome}
@@ -115,9 +133,14 @@ export default function CardPerfil() {
 											required
 											placeholder="Digite seu nome"
 										/>
-										{state.errors.nome && <p className="text-red-500 text-xs">{state.errors.nome[0]}</p>}
-										
+										{state.errors.nome && (
+											<p className="text-red-500 text-xs">
+												{state.errors.nome[0]}
+											</p>
+										)}
+
 										<FormInput
+											className="col-span-2"
 											label="Telefone"
 											name="telefone"
 											defaultValue={voluntario?.telefone}
@@ -125,44 +148,13 @@ export default function CardPerfil() {
 											required
 											placeholder="Digite seu telefone"
 										/>
-										{state.errors.telefone && <p className="text-red-500 text-xs">{state.errors.telefone[0]}</p>}
-
-										<div>
-											<label htmlFor="cargo">Cargo</label>
-											<Select name="cargo" defaultValue={voluntario?.cargo}>
-												<SelectTrigger className="w-full">
-													<SelectValue placeholder="Selecione seu cargo" />
-												</SelectTrigger>
-												<SelectContent>
-													<SelectGroup>
-														<SelectLabel>Escolha seu Cargo</SelectLabel>
-														<SelectItem value="Música">Música</SelectItem>
-														<SelectItem value="Intercessão">Intercessão</SelectItem>
-														<SelectItem value="Staff">Staff</SelectItem>
-														<SelectItem value="Coordenador de equipes">Coordenador de Equipes</SelectItem>
-														<SelectItem value="Comunicação">Comunicação</SelectItem>
-													</SelectGroup>
-												</SelectContent>
-											</Select>
-										</div>
-
+										{state.errors.telefone && (
+											<p className="text-red-500 text-xs">
+												{state.errors.telefone[0]}
+											</p>
+										)}
 										<FormInput
-											label="Endereço"
-											name="endereco"
-											defaultValue={voluntario?.endereco}
-											type="text"
-											required
-											placeholder="Digite seu endereço"
-										/>
-										<FormInput
-											label="Bairro"
-											name="bairro"
-											defaultValue={voluntario?.bairro}
-											type="text"
-											required
-											placeholder="Digite sua bairro"
-										/>
-										<FormInput
+											className="col-span-2"
 											label="Cep"
 											name="cep"
 											defaultValue={voluntario?.cep}
@@ -170,22 +162,75 @@ export default function CardPerfil() {
 											required
 											placeholder="Digite seu cep"
 										/>
-										{state.errors.cep && <p className="text-red-500 text-xs">{state.errors.cep[0]}</p>}
+										<FormInput
+											className="col-span-4"
+											label="Bairro"
+											name="bairro"
+											defaultValue={voluntario?.bairro}
+											type="text"
+											required
+											placeholder="Digite sua bairro"
+										/>
 
 										<FormInput
+											className="col-span-4"
+											label="Endereço"
+											name="endereco"
+											defaultValue={voluntario?.endereco}
+											type="text"
+											required
+											placeholder="Digite seu endereço"
+										/>
+
+										{state.errors.cep && (
+											<p className="text-red-500 text-xs">
+												{state.errors.cep[0]}
+											</p>
+										)}
+										<div className="col-span-4">
+											<label htmlFor="cargo">Cargo</label>
+											<Select
+												name="cargo"
+												defaultValue={voluntario?.cargo}
+												disabled
+											>
+												<SelectTrigger className="w-full">
+													<SelectValue placeholder="Selecione seu cargo" />
+												</SelectTrigger>
+												<SelectContent>
+													<SelectGroup>
+														<SelectLabel>Escolha seu Cargo</SelectLabel>
+														<SelectItem value="Música">Música</SelectItem>
+														<SelectItem value="Intercessão">
+															Intercessão
+														</SelectItem>
+														<SelectItem value="Staff">Staff</SelectItem>
+														<SelectItem value="Coordenador de equipes">
+															Coordenador de Equipes
+														</SelectItem>
+														<SelectItem value="Comunicação">
+															Comunicação
+														</SelectItem>
+													</SelectGroup>
+												</SelectContent>
+											</Select>
+										</div>
+										<FormInput
+											className="col-span-4"
 											label="Data de Nascimento"
 											name="dataNascimento"
-											defaultValue={
-												voluntario?.dataNascimento
-											}
+											defaultValue={voluntario?.dataNascimento}
 											type="date"
 											required
+											disabled
 											placeholder="Digite sua Data de Nascimento"
 										/>
 
-										<div className="flex justify-end gap-2 mt-4">
+										<div className="grid-2 col-span-4 gap-md mt-4">
 											<DialogClose asChild>
-												<Button type="button" variant="ghost">Cancelar</Button>
+												<Button type="button" variant="destructive">
+													Cancelar
+												</Button>
 											</DialogClose>
 											<Button
 												type="submit"
@@ -195,20 +240,26 @@ export default function CardPerfil() {
 												{isPending ? "Salvando..." : "Salvar Alterações"}
 											</Button>
 										</div>
-										{state.errors.database && <p className="text-red-500 text-center">{state.errors.database[0]}</p>}
-										{state.success && <p className="text-green-500 text-center">Perfil atualizado com sucesso!</p>}
+										{state.errors.database && (
+											<p className="text-red-500 text-center">
+												{state.errors.database[0]}
+											</p>
+										)}
+										{state.success && (
+											<p className="text-green-500 text-center">
+												Perfil atualizado com sucesso!
+											</p>
+										)}
 									</form>
 								</DialogContent>
 							</Dialog>
 						</div>
-						<CardDescription>
-							Membro desde {resultado}
-						</CardDescription>
+						<CardDescription>Membro desde {resultado}</CardDescription>
 					</div>
 				</section>
 			</CardHeader>
 			<CardContent className="flex-c gap-2">
-				<CardProgress as="gray" label="Perfil Completo" />
+				<CardProgress progressValue={80} as="green" label="Perfil Completo" />
 			</CardContent>
 		</Card>
 	);

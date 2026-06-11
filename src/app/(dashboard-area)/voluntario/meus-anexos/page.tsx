@@ -1,41 +1,42 @@
 import CardAnexo from "@/components/UI/Card/Card-Components/CardAnexo";
 import CardMessage from "@/components/UI/Card/Card-Components/CardMessage";
 import CardProgress from "@/components/UI/Card/Card-Components/CardProgress";
+import CardStats from "@/components/UI/Card/Card-Components/CardStats";
 import { Button } from "@/components/UI/Styled-Components/button";
 import {
 	Card,
 	CardDescription,
 	CardHeader,
 } from "@/components/UI/Styled-Components/card";
-import { FileWarning } from "lucide-react";
+import { FileWarning, Paperclip } from "lucide-react";
 
 export default function MeusAnexos() {
 	return (
 		<>
             <div className="flex-r justify-between">
 			    <h1 className="h1">Meus Anexos</h1>
-                <label className="font-normal bg-muted border rounded-md p-2">
+                <label className="text-sm font-semibold bg-muted border rounded-md p-2">
                     <input type="file" />
                     Enviar Arquivos
                 </label>
             </div>
-			<CardMessage
-				bgColor="warning"
-				textColor="warning"
-				title="Documentos Pendentes"
-				message="2 documentos obrigatórios ainda precisam ser enviados para a conclusão do seu cadastro."
-				icon={FileWarning}
-			/>
-			<Card>
-				<CardHeader>
-					<CardProgress
-                        label="Completude dos Anexos"
-                        as="yellow"
-                        progressValue={50}
-                    />
-                    <CardDescription>2 de 4 documentos enviados · 2 pendentes · 1 em revisão</CardDescription>
-				</CardHeader>
-			</Card>
+			<div className="grid-2 gap-md">
+                <CardStats
+                    titulo="Enviados"
+                    color="green"
+                    icon={Paperclip}
+                    quantidade={2}
+
+                />
+                <CardStats
+                    titulo="Pendentes"
+                    color="orange"
+                    icon={FileWarning}
+                    quantidade={2}
+
+                />
+
+            </div>
             <div className="flex-c gap-md">
                 <h2 className="h3 text-gray-800">Documentos</h2>
                 <div className="grid-2 gap-md">

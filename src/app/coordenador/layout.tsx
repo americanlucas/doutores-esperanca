@@ -19,7 +19,7 @@ export default function CoordinatorLayout({
 					<AppSidebar />
 					<main className="w-full">
 						<div className="flex-r items-center py-md">
-							<SidebarTrigger className="cursor-pointer" />
+							<SidebarTrigger className="pl-4 cursor-pointer" />
 							<Separator className="m-2" orientation="vertical" />
 							<div className="flex-r items-center justify-between w-full pr-4">
 								<header>Doutores de Esperança</header>
@@ -37,7 +37,7 @@ export default function CoordinatorLayout({
 				<div className="flex-1 flex flex-col min-h-[calc(100vh-16px)]">
 					{/* <CoordinatorHeader /> */}
 
-					<main className="flex-1 p-6 overflow-auto">{children}</main>
+					{/* <main className="flex-1 p-6 overflow-auto">{children}</main> */}
 				</div>
 			</div>
 		</div>

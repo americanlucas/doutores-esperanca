@@ -1,4 +1,4 @@
-import { MessageSquareWarning } from "lucide-react";
+import { Check, Clock, MessageSquareWarning, Pencil } from "lucide-react";
 import { Button } from "../Styled-Components/button";
 import {
 	Card,
@@ -14,10 +14,9 @@ export default function CardAtividades() {
 			{/* Capturar do banco de dados */}
 			<CardHeader>
 				<CardTitle>Resumo de Atividades</CardTitle>
-				<div className="grid-3 gap-md">
-					<CardStats as="black" quantidade={2} titulo="Inscrições" />
-					<CardStats as="green" quantidade={0} titulo="Realizadas" />
-					<CardStats as="black" quantidade={4} titulo="Horas" />
+				<div className="grid-2 gap-md">
+					<CardStats icon={Pencil} color="green" quantidade={2} titulo="Inscrições" />
+					<CardStats icon={Check} color="blue" quantidade={0} titulo="Realizadas" />
 				</div>
 			</CardHeader>
 			<CardHeader>

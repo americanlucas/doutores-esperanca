@@ -1,6 +1,5 @@
 "use client";
 
-import CardHeaderItemAtividades from "@/components/UI/Card/Card-Components/CardHeaderItemAtividades";
 import CardMessage from "@/components/UI/Card/Card-Components/CardMessage";
 import CardProgress from "@/components/UI/Card/Card-Components/CardProgress";
 import CardStats from "@/components/UI/Card/Card-Components/CardStats";
@@ -13,9 +12,16 @@ import {
 	CardTitle,
 } from "@/components/UI/Styled-Components/card";
 import { Separator } from "@/components/UI/Styled-Components/separator";
-import { MessageSquareCheck } from "lucide-react";
+import {
+	BookOpen,
+	Calendar,
+	MessageSquareCheck,
+	TrendingUp,
+	Users,
+} from "lucide-react";
 import Link from "next/link";
 import { useVoluntario } from "@/hooks/useVoluntario";
+import CardInscricoesAgendadas from "@/components/UI/Card/Card-Components/CardInscricoesAgendadas";
 
 export default function Inicio() {
 	const { voluntario, isLoading } = useVoluntario();
@@ -61,42 +67,63 @@ export default function Inicio() {
 				/>
 			</div>
 			<div className="grid-4 gap-md">
-				<CardStats titulo="Inscrições" quantidade={3} as="black" />
-				<CardStats titulo="Realizadas" quantidade={0} as="yellow" />
-				<CardStats titulo="Horas" quantidade={4} as="green" />
 				<CardStats
+					icon={Users}
+					titulo="Inscrições"
+					quantidade={3}
+					color="green"
+				/>
+				<CardStats
+					icon={Calendar}
+					titulo="Realizadas"
+					quantidade={0}
+					color="blue"
+				/>
+				<CardStats
+					icon={TrendingUp}
+					titulo="Horas"
+					quantidade={4}
+					color="orange"
+				/>
+				<CardStats
+					icon={BookOpen}
 					titulo="Perfil Completo"
 					quantidade={80}
-					as="green"
+					color="purple"
 					percent
 				/>
 			</div>
 			<div className="grid-2 gap-md">
 				<Card>
-					<CardHeader>
-						<CardTitle>Próximas Atividades</CardTitle>
+					<CardHeader className="flex flex-row items-center justify-between pb-2">
+						<CardTitle className="text-lg font-semibold">
+							Próximos Plantões
+						</CardTitle>
+						<Link href="/voluntario/minhas-inscricoes">
+							<Button variant="link" className="p-0 h-auto">
+								Ver todos
+							</Button>
+						</Link>
 					</CardHeader>
-					<CardContent className="flex-c">
-						<CardHeaderItemAtividades
-							titulo="Hospital Santa Lúcia Sul"
+					<CardContent className="flex-c gap-md">
+						<CardInscricoesAgendadas
+							nome_local="Hospital Santa Lúcia Sul"
 							modalidade="Canto"
 							turno="Manhã"
 							dia="20"
 							mes="Jun"
 							status="Confirmada"
 						/>
-						<Separator className="separator-h mt-4" />
-						<CardHeaderItemAtividades
-							titulo="Hospital Santa Lúcia Norte"
+						<CardInscricoesAgendadas
+							nome_local="Hospital Santa Lúcia Norte"
 							modalidade="Canto"
 							turno="Tarde"
 							dia="20"
 							mes="Jun"
 							status="Pendente"
 						/>
-						<Separator className="separator-h mt-4" />
-						<CardHeaderItemAtividades
-							titulo="Hospital Santa Lúcia Sul"
+						<CardInscricoesAgendadas
+							nome_local="Hospital Santa Lúcia Sul"
 							modalidade="Canto"
 							turno="Manhã"
 							dia="20"
@@ -107,43 +134,23 @@ export default function Inicio() {
 				</Card>
 				<Card>
 					<CardHeader>
-						<CardTitle className="flex-r items-center justify-between">
+						<CardTitle className="text-lg font-semibold flex-r items-center justify-between">
 							Progresso do Perfil
 							<Link href={"/voluntario/perfil"}>
-								<Button variant={"link"}>
-									Completar Perfil
-								</Button>
+								<Button variant={"link"}>Completar Perfil</Button>
 							</Link>
 						</CardTitle>
 					</CardHeader>
-					<CardContent className="flex-c gap-md">
-						<div>
+					<CardContent className="flex-c gap-md justify-around h-full">
+						<div className="flex-c gap-1.5">
 							<CardProgress
 								label="Dados Pessoais"
-								progressValue={100}
+								progressValue={80}
 								as="green"
 							/>
-						</div>
-						<div>
-							<CardProgress
-								label="Endereço"
-								progressValue={100}
-								as="green"
-							/>
-						</div>
-						<div>
-							<CardProgress
-								label="Anexos"
-								progressValue={40}
-								as="yellow"
-							/>
-						</div>
-						<div>
-							<CardProgress
-								label="Telefone"
-								progressValue={0}
-								as="red"
-							/>
+							<CardProgress label="Endereço" progressValue={100} as="green" />
+							<CardProgress label="Anexos" progressValue={50} as="yellow" />
+							<CardProgress label="Inscrições" progressValue={70} as="green" />
 						</div>
 						<Separator className="mt-4" />
 						<div>

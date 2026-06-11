@@ -197,7 +197,7 @@ input[type="file"] {
   }
   /* -----------------------------------------------------------FORM-----------------------------------------------------------*/
   .form-file {
-    @apply flex flex-col h-full max-w-md mx-auto gap-5 justify-center
+    @apply flex flex-col h-full min-w-lg mx-auto gap-5 justify-center
   }
 
   .input-form {

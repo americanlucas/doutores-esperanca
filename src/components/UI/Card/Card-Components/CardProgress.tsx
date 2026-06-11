@@ -32,21 +32,21 @@ export default function CardProgress({as: color, label, progressValue}: CardProg
 		blue: "bg-sky-400"
     }
 
-	useEffect(() => {
-		const fetchProgresso = async () => {
-			const resultado = await calcularProgressoPerfil(voluntario?.id?.toString());
-			setProgresso(resultado);
-		};
-		fetchProgresso();
-	}, [voluntario?.id])
+	// useEffect(() => {
+	// 	const fetchProgresso = async () => {
+	// 		const resultado = await calcularProgressoPerfil(voluntario?.id?.toString());
+	// 		setProgresso(resultado);
+	// 	};
+	// 	fetchProgresso();
+	// }, [voluntario?.id])
 
 	return (
 		<>
 			<div className="flex justify-between">
 				<CardDescription>{label}</CardDescription>
-				<CardDescription>{progresso?.geral}%</CardDescription>
+				<CardDescription>{progressValue}%</CardDescription>
 			</div>
-			<Progress value={progresso?.geral} className={`${colorClass[color]}`}/>
+			<Progress value={progressValue} className={`${colorClass[color]}`}/>
 		</>
 	);
 }
